@@ -1,0 +1,43 @@
+- name: Install prerequirements
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - software-properties-common
+
+- name: Add ansible repository
+  apt_repository: repo='ppa:ansible/ansible'
+
+- name: Install ansible
+  apt:
+    name: ansible
+    update_cache: yes
+    state: present
+
+- name: Install ruby dev
+  apt:
+    name: ruby-dev
+    update_cache: yes
+    state: present
+
+- name: Install zlib dev
+  apt:
+    name: zlib1g-dev
+    update_cache: yes
+    state: present
+
+- name: Install vagrant
+  apt:
+    name: vagrant
+    update_cache: yes
+    state: present
+
+- name: Install vagrant google
+  gem:
+    name: vagrant-google
+    state: latest
+
+- name: Install PIP
+  easy_install:
+    name: pip
+    state: present
