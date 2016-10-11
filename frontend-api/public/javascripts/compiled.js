@@ -1,0 +1,1 @@
+console.error("ReactifyError: /Users/jeffreya/workspace/trackr/frontend-api/assets/javascripts/components/App.js: Parse Error: Line 1: Illegal import declaration while parsing file: /Users/jeffreya/workspace/trackr/frontend-api/assets/javascripts/components/App.js");

@@ -1,0 +1,6 @@
+---
+configs:
+    default:
+      project_id: '<project-id-here>'
+      client_email: '<client_email_here>'
+      json_key_location: '<json_key_location_here>'
