@@ -2,6 +2,7 @@ package com.javabeast.udpserver;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.Environment;
@@ -15,7 +16,6 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by jeffreya on 02/11/2016.
- *
  */
 
 @Configuration
@@ -23,20 +23,19 @@ public class UDPServer {
 
     private Log log = LogFactory.getLog(UDPServer.class);
 
+    @Value("${server.port}")
+    private String port;
+
     @Bean
     public DatagramServer<byte[], byte[]> datagramServer(Environment env) throws InterruptedException {
-
-        final int availableUdpPort = SocketUtils.findAvailableUdpPort();
-
         final DatagramServer<byte[], byte[]> server = new DatagramServerSpec<byte[], byte[]>(NettyDatagramServer.class)
                 .env(env)
-                .listen(availableUdpPort)
+                .listen(Integer.valueOf(port))
                 .codec(StandardCodecs.BYTE_ARRAY_CODEC)
                 .consumeInput(bytes -> {
                     log.info("received: " + new String(bytes));
                 })
                 .get();
-
         server.start().await();
         return server;
     }
