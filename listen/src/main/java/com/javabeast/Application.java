@@ -1,5 +1,6 @@
 package com.javabeast;
 
+import com.javabeast.ampq.Writer;
 import com.javabeast.listen.UDPListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @EnableReactor
-@Import(UDPListener.class)
+@Import({UDPListener.class, Writer.class})
 @EnableAutoConfiguration
 public class Application {
 

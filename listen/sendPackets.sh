@@ -1,5 +1,12 @@
 #!/bin/bash
-for i in {1..1000}
+
+declare -i count=0
+
+for j in {1..10000}
 do
 	echo -n "hello" >/dev/udp/localhost/$1
+	count=$((count+1))
 done
+echo "Cycle complete"
+echo $count
+	
