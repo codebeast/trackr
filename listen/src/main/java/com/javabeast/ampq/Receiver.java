@@ -1,7 +1,10 @@
 package com.javabeast.ampq;
 
+import com.javabeast.listen.UDPListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -10,16 +13,14 @@ import java.util.concurrent.CountDownLatch;
  *
  */
 
+@Component
 public class Receiver {
+
     private Log log = LogFactory.getLog(Receiver.class);
 
-    private CountDownLatch latch = new CountDownLatch(1);
-
-    public void receiveMessage(String message) {
-        latch.countDown();
+    @RabbitListener(queues = "spring-boot")
+    public void processOrder(String data) {
+        log.error("processing: " + data);
     }
 
-    public CountDownLatch getLatch() {
-        return latch;
-    }
 }
