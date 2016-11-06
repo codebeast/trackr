@@ -1,7 +1,7 @@
 package com.javabeast;
 
-import com.javabeast.ampq.Writer;
-import com.javabeast.listen.UDPListener;
+import com.javabeast.ampq.AMPQService;
+import com.javabeast.udp.UDPListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @EnableReactor
-@Import({UDPListener.class, Writer.class})
+@Import({UDPListener.class, AMPQService.class})
 @EnableAutoConfiguration
 @ComponentScan
 public class Application {

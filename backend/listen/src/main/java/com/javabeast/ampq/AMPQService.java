@@ -15,19 +15,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
-public class Writer {
+public class AMPQService {
 
     @Value("${trackr.exchange}")
     private String exchange;
 
     @Value("${trackr.unprocessed.queue}")
     private String unprocessedQueue;
-
-    @Value("${number.of.consumers}")
-    private String numberOfConsumers;
-
-    @Value("${number.of.consumers.max}")
-    private String maxNumberOfConsumers;
 
     @Bean
     Queue queue() {
@@ -48,9 +42,7 @@ public class Writer {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
-        factory.setConcurrentConsumers(Integer.parseInt(numberOfConsumers));
-        factory.setMaxConcurrentConsumers(Integer.parseInt(maxNumberOfConsumers));
-        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
         return factory;
     }
 

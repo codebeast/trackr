@@ -1,7 +1,7 @@
 package com.javabeast;
 
 import com.javabeast.ampq.Writer;
-import com.javabeast.listen.UDPListener;
+import com.javabeast.udp.UDPListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
