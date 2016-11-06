@@ -1,0 +1,33 @@
+{
+   "params":[
+      {
+         "name":"required",
+         "type":"bool",
+         "default":false
+      },
+      {
+         "name":"previewSize",
+         "type":"enum",
+         "default":"small",
+         "options": ["x-small", "small", "medium", "large"]
+      },
+      {
+         "name":"audited",
+         "type":"bool"
+      }
+   ],
+   "actualFields":[
+      "id"
+   ],
+   "notActualFields":[
+      "name"
+   ],
+   "filter": false,
+   "linkDefs": {
+      "type": "belongsTo",
+      "entity": "Attachment"
+   },
+   "fieldDefs":{
+      "skipOrmDefs": true
+   }
+}

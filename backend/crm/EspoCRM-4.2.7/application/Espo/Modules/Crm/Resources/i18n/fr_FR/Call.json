@@ -1,0 +1,47 @@
+{
+    "fields": {
+        "name": "Nom",
+        "parent": "Parent",
+        "status": "Statut",
+        "dateStart": "Date de début",
+        "dateEnd": "Date de fin",
+        "direction": "Direction",
+        "duration": "Durée",
+        "description": "Description",
+        "users": "Utilisateurs",
+        "contacts": "Contacts",
+        "leads": "Prospects",
+        "reminders": "Rappels",
+        "account": "Compte"
+    },
+    "links": {
+    },
+    "options": {
+        "status": {
+            "Planned": "Prévu",
+            "Held": "Tenu",
+            "Not Held": "Non tenu"
+        },
+        "direction": {
+            "Outbound": "Sortant",
+            "Inbound": "Entrant"
+        },
+        "acceptanceStatus": {
+            "None": "Aucun",
+            "Accepted": "Accepté",
+            "Declined": "Décliné",
+            "Tentative": "Tentative"
+        }
+    },
+    "labels": {
+        "Create Call": "Créer un Appel",
+        "Set Held": "Qualifier en Tenu",
+        "Set Not Held": "Qualifier en Non tenu",
+        "Send Invitations": "Envoyer les invitations"
+    },
+    "presetFilters": {
+        "planned": "Prévu",
+        "held": "Tenu",
+        "todays": "Aujourd'hui"
+    }
+}

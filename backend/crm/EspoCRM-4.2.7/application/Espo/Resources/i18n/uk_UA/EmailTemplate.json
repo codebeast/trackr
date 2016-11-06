@@ -1,0 +1,16 @@
+{
+    "fields": {
+        "name": "Ім'я",
+        "status": "Статус",
+        "isHtml": "HTML-код",
+        "body": "Тіло",
+        "subject": "Тема",
+        "attachments": "Вкладення",
+        "insertField": ""
+    },
+    "links": {
+    },
+    "labels": {
+        "Create EmailTemplate": "Створити шаблон листа"
+    }
+}

@@ -1,0 +1,55 @@
+{
+   "controller": "controllers/record",
+   "aclPortal": "crm:acl-portal/contact",
+   "views":{
+      "detail":"crm:views/contact/detail"
+   },
+   "sidePanels":{
+      "detail":[
+         {
+            "name":"activities",
+            "label":"Activities",
+            "view":"crm:views/record/panels/activities",
+            "aclScope": "Activities"
+         },
+         {
+            "name":"history",
+            "label":"History",
+            "view":"crm:views/record/panels/history",
+            "aclScope": "Activities"
+         },
+         {
+            "name":"tasks",
+            "label":"Tasks",
+            "view":"crm:views/record/panels/tasks",
+            "aclScope": "Task"
+         }
+      ]
+   },
+   "relationshipPanels": {
+      "campaignLogRecords": {
+        "rowActionsView": "views/record/row-actions/empty",
+        "select": false,
+        "create": false
+      },
+      "opportunities":{
+         "layout":"listForAccount"
+      },
+      "targetLists": {
+         "create": false,
+         "rowActionsView": "views/record/row-actions/relationship-unlink-only"
+      }
+   },
+   "boolFilterList": ["onlyMy"],
+   "additionalLayouts": {
+      "detailConvert": {
+         "type": "detail"
+      },
+      "listForAccount": {
+         "type": "listSmall"
+      }
+   },
+   "filterList": [
+      "portalUsers"
+   ]
+}

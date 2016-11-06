@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "post": "Inviare",
+    "attachments": "Allegato",
+    "targetType": "Target",
+    "teams": "Teams",
+    "users": "Utenti",
+    "portals": "Portali"
+  },
+  "filters": {
+    "all": "Tutti",
+    "posts": "Messaggi",
+    "updates": "Aggiornamenti"
+  },
+  "options": {
+    "targetType": {
+      "self": "a me stesso",
+      "users": "a utente particolare",
+      "teams": "a team particolare",
+      "all": "a tutti gli utenti interni",
+      "portals": "agli utenti del portale"
+    }
+  },
+  "messages": {
+    "writeMessage": "Scrivi il tuo messaggio qui"
+  }
+}

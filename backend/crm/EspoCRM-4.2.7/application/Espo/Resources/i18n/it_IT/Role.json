@@ -1,0 +1,51 @@
+{
+  "fields": {
+    "name": "Nome",
+    "roles": "Ruoli",
+    "assignmentPermission": "Assegnazione Autorizzazioni",
+    "userPermission": "Autorizzazioni Utente",
+    "portalPermission": "Autorizzazione Portale"
+  },
+  "links": {
+    "users": "Utenti",
+    "teams": "Teams"
+  },
+  "tooltips": {
+    "assignmentPermission": "Permette di limitare la capacità di assegnare i record e inviare messaggi ad altri utenti \n\ntutte - nessuna restrizione\n\nteam - può assegnare post solo per i compagni di team\n\nnon può - può assegnare post solo per sé",
+    "userPermission": "Permette di limitare la capacità per gli utenti di visualizzare le attività , il calendario e il flusso di altri utenti\n\ntutto - Può visualizzare tutti \n\nteam - è possibile visualizzare solo le attività dei compagni di squadra\n\nno - non può vedere ",
+    "portalPermission": "Definisce l'accesso alle informazioni del portale , la capacità di convertire i contatti con gli utenti del portale e inviare messaggi agli utenti del portale "
+  },
+  "labels": {
+    "Access": "Accesso",
+    "Create Role": "Crea Ruolo",
+    "Scope Level": "Livello Ambito",
+    "Field Level": "FLivello Campo"
+  },
+  "options": {
+    "accessList": {
+      "not-set": "non impostato",
+      "enabled": "abilitato",
+      "disabled": "disabilitato"
+    },
+    "levelList": {
+      "all": "tutti",
+      "team": "team",
+      "account": "account",
+      "contact": "contatto",
+      "own": "se stesso",
+      "no": "no",
+      "yes": "si",
+      "not-set": "non impostato"
+    }
+  },
+  "actions": {
+    "read": "Visualizzazione",
+    "edit": "Modificare",
+    "delete": "Cancellare",
+    "stream": "Stream",
+    "create": "Creare"
+  },
+  "messages": {
+    "changesAfterClearCache": "Verranno applicate tutte le modifiche del controllo di accesso dopo la cancellazione della cache."
+  }
+}

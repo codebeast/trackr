@@ -1,0 +1,44 @@
+{
+    "labels": {
+        "Fields": "Поля",
+        "Relationships": "Зв'язки"
+    },
+    "fields": {
+        "name": "Ім'я",
+        "type": "Тип",
+        "labelSingular": "Одиночна мітка",
+        "labelPlural": "Множинна мітка",
+        "stream": "Потік",
+        "label": "Мітка",
+        "linkType": "Link Type",
+        "entityForeign": "Foreign Entity",
+        "linkForeign": "Foreign Link",
+        "link": "Link",
+        "labelForeign": "Foreign Label",
+        "sortBy": "Default Order (field)",
+        "sortDirection": "Default Order (direction)"
+    },
+    "options": {
+        "type": {
+            "": "Нема",
+            "Base": "База",
+            "Person": "Особа",
+            "CategoryTree": "Category Tree"
+        },
+        "linkType": {
+            "manyToMany": "Багато-до-багатьох",
+            "oneToMany": "Один-до-багатьох",
+            "manyToOne": "Багато-до-одного",
+            "parentToChildren": "Батьки-дітям",
+            "childrenToParent": "Діти-батькам"
+        },
+        "sortDirection": {
+            "asc": "Ascending",
+            "desc": "Descending"
+        }
+    },
+    "messages": {
+        "entityCreated": "Підрозділ було створено",
+        "linkAlreadyExists": "Конфлікт: линва вже існує."
+    }
+}

@@ -1,0 +1,34 @@
+{
+   "params":[
+      {
+         "name":"required",
+         "type":"bool",
+         "default":false
+      },
+      {
+         "name":"default",
+         "type":"text"
+      },
+      {
+         "name":"maxLength",
+         "type":"int"
+      },
+      {
+         "name":"seeMoreDisabled",
+         "type":"bool"
+      },
+      {
+         "name": "rows",
+         "type": "int",
+         "default": 4,
+         "min": 1
+      },
+      {
+         "name": "lengthOfCut",
+         "type": "int",
+         "default": 400,
+         "min": 1
+      }
+   ],
+   "filter": true
+}

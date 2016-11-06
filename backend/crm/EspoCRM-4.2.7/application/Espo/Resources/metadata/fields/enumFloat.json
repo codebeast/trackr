@@ -1,0 +1,21 @@
+{
+   "params":[
+      {
+         "name":"options",
+         "type":"array"
+      },
+      {
+         "name":"default",
+         "type":"float"
+      },
+      {
+         "name":"audited",
+         "type":"bool"
+      }
+   ],
+   "filter": true,
+   "notCreatable": true,
+   "fieldDefs":{
+      "type":"float"
+   }
+}

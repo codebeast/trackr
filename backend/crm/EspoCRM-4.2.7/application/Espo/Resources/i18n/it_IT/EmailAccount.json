@@ -1,0 +1,51 @@
+{
+  "fields": {
+    "name": "Nome",
+    "status": "Stato",
+    "host": "Host",
+    "username": "Username",
+    "password": "Password",
+    "port": "Porta",
+    "monitoredFolders": "Cartelle Monitorate",
+    "ssl": "SSL",
+    "fetchSince": "Da Raggiungere",
+    "emailAddress": "Indirizzo Email",
+    "sentFolder": "Cartella Inviate",
+    "storeSentEmails": "Email Inviate",
+    "keepFetchedEmailsUnread": "Mantenere le Email non lette",
+    "emailFolder": "Mettere nella Cartella",
+    "useSmtp": "Usa SMTP",
+    "smtpHost": "SMTP Host",
+    "smtpPort": "SMTP Porta",
+    "smtpAuth": "SMTP Autenticazione",
+    "smtpSecurity": "SMTP Sicurezza",
+    "smtpUsername": "SMTP Username",
+    "smtpPassword": "SMTP Password"
+  },
+  "links": {
+    "filters": "Filtri",
+    "emails": "Email"
+  },
+  "options": {
+    "status": {
+      "Active": "Attivo",
+      "Inactive": "Non Attivo"
+    }
+  },
+  "labels": {
+    "Create EmailAccount": "Crea Account Email ",
+    "IMAP": "IMAP",
+    "Main": "Principale",
+    "Test Connection": "Test della connessione",
+    "Send Test Email": "Test Invio Email",
+    "SMTP": "SMTP"
+  },
+  "messages": {
+    "couldNotConnectToImap": "Impossibile connettersi al server IMAP",
+    "connectionIsOk": "La Connessione è Ok"
+  },
+  "tooltips": {
+    "monitoredFolders": "È possibile aggiungere cartella ' Inviati ' per sincronizzare i messaggi di posta elettronica inviati da client di posta elettronica esterni .",
+    "storeSentEmails": "Le e-mail inviate saranno memorizzate sul server IMAP."
+  }
+}

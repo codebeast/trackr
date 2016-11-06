@@ -1,0 +1,95 @@
+{
+  "fields": {
+    "name": "Nome",
+    "userName": "Nome Utente",
+    "title": "Titolo",
+    "isAdmin": "Is Admin",
+    "defaultTeam": "Default Team",
+    "emailAddress": "Email",
+    "phoneNumber": "Telefono",
+    "roles": "Ruoli",
+    "portals": "Portali",
+    "portalRoles": "Ruoli Portale",
+    "teamRole": "Posizione",
+    "password": "Password",
+    "currentPassword": "Password Attuale",
+    "passwordConfirm": "Conferma Password",
+    "newPassword": "Nuova Password",
+    "newPasswordConfirm": "Conferma al NuovaPassword",
+    "avatar": "Avatar",
+    "isActive": "È Attivo",
+    "isPortalUser": "È il portale per l'utente",
+    "contact": "Contatti",
+    "accounts": "Accounts",
+    "account": "Account (Primario)",
+    "sendAccessInfo": "Invia e-mail con le Info di accesso per l'utente",
+    "portal": "Portale",
+    "gender": "Genere"
+  },
+  "links": {
+    "teams": "Team",
+    "roles": "Ruoli",
+    "notes": "Note",
+    "portals": "Portali",
+    "portalRoles": "Ruoli Portale",
+    "contact": "Contatti",
+    "accounts": "Accounts",
+    "account": "Account (Primario}"
+  },
+  "labels": {
+    "Create User": "Crea Utente",
+    "Generate": "Generare",
+    "Access": "Accesso",
+    "Preferences": "Preferenze",
+    "Change Password": "Cambia Password",
+    "Teams and Access Control": "Controllo Teams e Accessi",
+    "Forgot Password?": "Ha dimenticato la password?",
+    "Password Change Request": "Richiesta Modifica Password",
+    "Email Address": "Indirizzo Email",
+    "External Accounts": "Account Esterni",
+    "Email Accounts": "Email Accounts",
+    "Portal": "Portale",
+    "Create Portal User": "Crea Utente Portale"
+  },
+  "tooltips": {
+    "defaultTeam": "Tutti i record creati da questo utente saranno inseriti di default in questo Team.",
+    "userName": "Lettere a-z, numeri 0-9, puntini, trattini, @ e sottolineature sono permessi.",
+    "isAdmin": "L'utente Admin può accedere a tutto.",
+    "isActive": "Se non verificato , l'utente non sarà in grado di effettuare il login .",
+    "teams": "Team a cui appartiene l'utente. Il livello di controllo di accesso viene ereditato dai ruoli del team.",
+    "roles": "Ruoli di accesso aggiuntivi. Usalo se l'utente non appartiene ad alcun gruppo o è necessario estendere il livello di controllo di accesso in esclusiva per questo utente.",
+    "portalRoles": "Ulteriori ruoli portale . Usalo per estendere il livello di controllo di accesso esclusivamente per questo utente .",
+    "portals": "Portali a cui l'utente ha accesso."
+  },
+  "messages": {
+    "passwordWillBeSent": "La Password verrà inviata all'indirizzo e-mail dell'utente.",
+    "accountInfoEmailSubject": "EspoCRM User Access Info",
+    "accountInfoEmailBody": "I tuoi dati di accesso:\n\nUsername: {userName}\nPassword: {password}\n\n{siteUrl}",
+    "passwordChangeLinkEmailSubject": "Richiesta Modifica Password",
+    "passwordChangeLinkEmailBody": "È possibile modificare la password da questo link {link } . Questo URL univoco scadrà presto .",
+    "passwordChanged": "La password è stata modificata",
+    "userCantBeEmpty": "Il Nome utente non può essere vuoto",
+    "wrongUsernamePasword": "username/password Errato",
+    "emailAddressCantBeEmpty": "L'indirizzo Email non può essere vuoto",
+    "userNameEmailAddressNotFound": "Username/Indirizzo Email non trovato",
+    "forbidden": "Vietato , riprova piu tardi",
+    "uniqueLinkHasBeenSent": "L' URL univoco è stato inviato all'indirizzo di posta elettronica specificato .",
+    "passwordChangedByRequest": "la Password è stata cambiata.",
+    "setupSmtpBefore": "È necessario impostare <a href=\"{url}\">SMTP settings</a> per rendere il sistema in grado di inviare la password nelle email."
+  },
+  "options": {
+    "gender": {
+      "": "Non impostato",
+      "Male": "Maschio",
+      "Female": "Femmina",
+      "Neutral": "Neutral"
+    }
+  },
+  "boolFilters": {
+    "onlyMyTeam": "Solo per il mio Team"
+  },
+  "presetFilters": {
+    "active": "Attivo",
+    "activePortal": "Portale Attivo"
+  }
+}

@@ -1,0 +1,152 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "trim": true
+        },
+        "emailAddress": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 100,
+            "view": "views/inbound-email/fields/email-address",
+            "trim": true
+        },
+        "status": {
+            "type": "enum",
+            "options": ["Active", "Inactive"]
+        },
+        "host": {
+            "type": "varchar",
+            "required": true,
+            "trim": true
+        },
+        "port": {
+            "type": "varchar",
+            "default": "143",
+            "required": true
+        },
+        "ssl": {
+            "type": "bool"
+        },
+        "username": {
+            "type": "varchar",
+            "required": true,
+            "trim": true
+        },
+        "password": {
+            "type": "password"
+        },
+        "monitoredFolders": {
+            "type": "varchar",
+            "required": true,
+            "default": "INBOX",
+            "view": "views/inbound-email/fields/folders"
+        },
+        "fetchSince": {
+            "type": "date",
+            "required": true
+        },
+        "fetchData": {
+            "type": "jsonObject",
+            "readOnly": true
+        },
+        "assignToUser": {
+            "type": "link",
+            "tooltip": true
+        },
+        "team": {
+            "type": "link",
+            "tooltip": true
+        },
+        "addAllTeamUsers": {
+            "type": "bool",
+            "tooltip": true
+        },
+        "createCase": {
+            "type": "bool",
+            "tooltip": true
+        },
+        "caseDistribution": {
+            "type": "enum",
+            "options": ["", "Direct-Assignment", "Round-Robin", "Least-Busy"],
+            "default": "Direct-Assignment",
+            "tooltip": true
+        },
+        "targetUserPosition": {
+            "type": "enum",
+            "view": "views/inbound-email/fields/target-user-position",
+            "tooltip": true
+        },
+        "reply": {
+            "type": "bool",
+            "tooltip": true
+        },
+        "replyEmailTemplate": {
+            "type": "link"
+        },
+        "replyFromAddress": {
+            "type": "varchar"
+        },
+        "replyToAddress": {
+            "type": "varchar",
+            "tooltip": true,
+            "required": true
+        },
+        "replyFromName": {
+            "type": "varchar"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true
+        }
+    },
+    "links": {
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignToUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "team": {
+            "type": "belongsTo",
+            "entity": "Team"
+        },
+        "replyEmailTemplate": {
+            "type": "belongsTo",
+            "entity": "EmailTemplate"
+        },
+        "filters": {
+            "type": "hasChildren",
+            "foreign": "parent",
+            "entity": "EmailFilter"
+        },
+        "emails": {
+            "type": "hasMany",
+            "entity": "Email",
+            "foreign": "inboundEmails"
+        }
+    },
+    "collection": {
+        "sortBy": "name",
+        "asc": true
+    }
+}

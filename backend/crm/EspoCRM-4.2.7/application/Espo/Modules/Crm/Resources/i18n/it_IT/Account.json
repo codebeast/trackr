@@ -1,0 +1,80 @@
+{
+  "fields": {
+    "name": "Nome",
+    "emailAddress": "Email",
+    "website": "Sito Web",
+    "phoneNumber": "Telefono",
+    "billingAddress": "Indirizzo di Fatturazione",
+    "shippingAddress": "Indirizzo di Spedizione",
+    "description": "Descrizione",
+    "sicCode": "Sic Code",
+    "industry": "Azienda",
+    "type": "Tipo",
+    "contactRole": "Titolo",
+    "campaign": "Campagna",
+    "targetLists": "Liste di Destinazione",
+    "targetList": "Lista di Destinazione"
+  },
+  "links": {
+    "contacts": "Contatti",
+    "opportunities": "Opportunita'",
+    "cases": "Casi",
+    "documents": "Documenti",
+    "meetingsPrimary": "Meeting (ampliato)",
+    "callsPrimary": "Chiamate (ampliato)",
+    "tasksPrimary": "Task (ampliato)",
+    "emailsPrimary": "Email (ampliato)",
+    "targetLists": "Liste di Destinazione",
+    "campaignLogRecords": "Log Campagna",
+    "campaign": "Campagna",
+    "portalUsers": "Utenti portale"
+  },
+  "options": {
+    "type": {
+      "Customer": "Cliente",
+      "Investor": "Invetitore",
+      "Partner": "Partner",
+      "Reseller": "Rivenditore"
+    },
+    "industry": {
+      "Agriculture": "Agricultura",
+      "Advertising": "Pubblicità",
+      "Apparel & Accessories": "Abbigliamento e Accessori",
+      "Automotive": "Settore Automobilistico",
+      "Banking": "Bancario",
+      "Biotechnology": "Biotecnologie",
+      "Building Materials & Equipment": "Materiali da costruzione e attrezzature",
+      "Chemical": "Chimico",
+      "Computer": "Computer",
+      "Education": "Insegnante",
+      "Electronics": "Elettronica",
+      "Energy": "Energia",
+      "Entertainment & Leisure": "Intrattenimento e tempo libero",
+      "Finance": "Finanza",
+      "Food & Beverage": "Prodotti alimentari e bevande",
+      "Grocery": "Drogheria",
+      "Healthcare": "Assistenza sanitaria",
+      "Insurance": "Assicurazioni",
+      "Legal": "Legale",
+      "Manufacturing": "Manifatturiero",
+      "Publishing": "Editoriale",
+      "Real Estate": "Immobiliare",
+      "Service": "Servizi",
+      "Sports": "Sport",
+      "Software": "Software",
+      "Technology": "Technologia",
+      "Telecommunications": "Telecommunicazioni",
+      "Television": "Televisione",
+      "Transportation": "Trasporti",
+      "Venture Capital": "Capitale di rischio"
+    }
+  },
+  "labels": {
+    "Create Account": "Crea Account",
+    "Copy Billing": "Copia di Fatturazione"
+  },
+  "presetFilters": {
+    "customers": "Clienti",
+    "partners": "Partner"
+  }
+}

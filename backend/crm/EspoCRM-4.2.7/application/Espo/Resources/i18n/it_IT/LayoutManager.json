@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "width": "Larghezza (%)",
+    "link": "Link",
+    "notSortable": "Non Ordinabile",
+    "align": "Allinea"
+  },
+  "options": {
+    "align": {
+      "left": "Sinistra",
+      "right": "Destra"
+    }
+  }
+}

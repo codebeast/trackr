@@ -1,0 +1,21 @@
+[
+    {
+        "label": "System",
+        "rows": [
+            [{"name": "useCache"}, {"name": "siteUrl"}],
+            [{"name": "exportDisabled"}, {"name": "globalSearchEntityList"}],
+            [{"name": "followCreatedEntities"}, {"name": "calendarEntityList"}]
+        ]
+    },
+    {
+        "label": "Locale",
+        "rows": [
+            [{"name": "dateFormat"}, {"name": "timeZone"}],
+            [{"name": "timeFormat"}, {"name": "weekStart"}],
+            [false, {"name": "thousandSeparator"}],
+            [{"name": "language"}, {"name": "decimalMark"}],
+            [{"name": "addressFormat"}, false],
+            [{"name": "addressPreview"}, false]
+        ]
+    }
+]

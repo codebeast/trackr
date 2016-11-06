@@ -1,0 +1,16 @@
+{
+    "fields": {
+        "name": "Nom",
+        "status": "Statut",
+        "isHtml": "Html",
+        "body": "Corps",
+        "subject": "Objet",
+        "attachments": "Pièces-jointes",
+        "insertField": ""
+    },
+    "links": {
+    },
+    "labels": {
+        "Create EmailTemplate": "Créer un modèle d'email"
+    }
+}

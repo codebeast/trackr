@@ -1,0 +1,28 @@
+[
+    {
+        "label":"",
+        "rows":[
+            [
+                {"name":"name", "fullWidth": true}
+            ],
+            [
+                {"name":"emailAddress", "fullWidth": true}
+            ],
+            [
+                {"name":"phoneNumber", "fullWidth": true}
+            ],
+            [
+                {"name":"accountName"}, {"name":"addressCountry"}
+            ],
+            [
+                {"name":"title"}, {"name":"website"}
+            ],
+            [
+                {"name":"status"}, {"name":"source"}
+            ],
+            [
+                {"name":"description", "fullWidth": true}
+            ]
+        ]
+    }
+]

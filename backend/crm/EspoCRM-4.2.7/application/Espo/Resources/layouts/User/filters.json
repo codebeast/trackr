@@ -1,0 +1,11 @@
+[
+    "teams",
+    "createdAt",
+    "emailAddress",
+    "title",
+    "isAdmin",
+    "isActive",
+    "portals",
+    "accounts",
+    "contact"
+]

@@ -1,0 +1,6 @@
+[
+    {"name":"name","width":30,"link":true},
+    {"name":"host", "notSortable": true},
+    {"name":"status"},
+    {"name":"createCase", "notSortable": true}
+]

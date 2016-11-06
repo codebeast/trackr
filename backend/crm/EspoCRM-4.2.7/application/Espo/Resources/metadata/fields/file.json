@@ -1,0 +1,23 @@
+{
+   "params":[
+      {
+         "name":"required",
+         "type":"bool",
+         "default":false
+      }
+   ],
+   "actualFields":[
+      "id"
+   ],
+   "notActualFields":[
+      "name"
+   ],
+   "filter": false,
+   "linkDefs": {
+      "type": "belongsTo",
+      "entity": "Attachment"
+   },
+   "fieldDefs":{
+      "skipOrmDefs": true
+   }
+}

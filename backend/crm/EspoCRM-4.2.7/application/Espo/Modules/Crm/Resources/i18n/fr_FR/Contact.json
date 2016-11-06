@@ -1,0 +1,36 @@
+{
+    "fields": {
+        "name": "Nom",
+        "emailAddress": "Email",
+        "title": "Titre",
+        "account": "Compte",
+        "accounts": "Comptes",
+        "phoneNumber": "Téléphone",
+        "accountType": "Type de compte",
+        "doNotCall": "Ne pas appeler",
+        "address": "Adresse",
+        "opportunityRole": "Rôle d'opportunité",
+        "accountRole": "Titre",
+        "description": "Description",
+        "campaign": "Campagne",
+        "targetLists": "Listes de cibles",
+        "targetList": "Liste de cibles"
+    },
+    "links": {
+        "opportunities": "Opportunités",
+        "cases": "Tickets",
+        "targetLists": "Listes de cibles",
+        "campaignLogRecords": "Rapporter une campagne"
+    },
+    "labels": {
+        "Create Contact": "Créer un Contact"
+    },
+    "options": {
+        "opportunityRole": {
+            "": "--Aucun--",
+            "Decision Maker": "Décisionnaire",
+            "Evaluator": "Évaluateur",
+            "Influencer": "Influenceur"
+        }
+    }
+}

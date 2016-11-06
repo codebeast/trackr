@@ -1,0 +1,24 @@
+{
+    "controller": "controllers/record",
+    "recordViews": {
+        "detail": "Template.Record.Detail"
+    },
+    "formDependency": {
+        "printFooter": {
+            "map": {
+                "true" : [
+                    {
+                        "action": "show",
+                        "fields": ["footer", "footerPosition"]
+                    }
+                ]
+            },
+            "default": [
+                {
+                    "action": "hide",
+                    "fields": ["footer", "footerPosition"]
+                }
+            ]
+        }
+    }
+}

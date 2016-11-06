@@ -1,0 +1,29 @@
+{
+    "fields": {
+        "name": "Nom",
+        "status": "Statut",
+        "job": "Tâche",
+        "scheduling": "Plannification (crontab notation)"
+    },
+    "links": {
+        "log": "Log"
+    },
+    "labels": {
+        "Create ScheduledJob": "Créer une tâche plannifiée"
+    },
+    "options": {
+        "job": {
+            "Cleanup": "Nettoyer"
+        },
+        "cronSetup": {
+            "linux": "Note: Ajoutez cette ligne dans le fichier crontab pour lancer les tâches planifiées:",
+            "mac": "Note: Ajoutez cette ligne dans le fichier crontab pour lancer les tâches planifiées:",
+            "windows": "Note: Créez un fichier de commandes avec les commandes suivantes pour exécuter des tâches planifiées Windows",
+            "default": "Note: Ajouter cette commande pour Cron (tâche planifiée):"
+        },
+        "status": {
+            "Active": "Active",
+            "Inactive": "Inactive"
+        }
+    }
+}

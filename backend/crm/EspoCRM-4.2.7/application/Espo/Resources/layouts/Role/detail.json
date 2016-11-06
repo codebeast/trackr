@@ -1,0 +1,18 @@
+[
+    {
+        "rows": [
+            [
+                {"name": "name"},
+                {"name": "assignmentPermission"}
+            ],
+            [
+                false,
+                {"name": "userPermission"}
+            ],
+            [
+                false,
+                {"name": "portalPermission"}
+            ]
+        ]
+    }
+]

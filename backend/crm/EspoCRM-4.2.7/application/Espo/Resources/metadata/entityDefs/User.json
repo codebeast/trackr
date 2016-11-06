@@ -1,0 +1,228 @@
+{
+    "fields": {
+        "isAdmin": {
+            "type": "bool",
+            "tooltip": true
+        },
+        "userName": {
+            "type": "varchar",
+            "maxLength": 50,
+            "required": true,
+            "view": "views/user/fields/user-name",
+            "tooltip": true
+        },
+        "name": {
+            "type": "personName",
+            "view": "views/user/fields/name"
+        },
+        "password": {
+            "type": "password",
+            "maxLength": 150,
+            "internal": true,
+            "disabled": true
+        },
+        "passwordConfirm": {
+            "type": "password",
+            "maxLength": 150,
+            "internal": true,
+            "disabled": true,
+            "notStorable": true
+        },
+        "salutationName": {
+            "type": "enum",
+            "options": ["", "Mr.", "Mrs.", "Ms.", "Dr."]
+        },
+        "firstName": {
+            "type": "varchar",
+            "maxLength": 100,
+            "default":""
+        },
+        "lastName": {
+            "type": "varchar",
+            "maxLength": 100,
+            "required": true,
+            "default":""
+        },
+        "isActive": {
+            "type": "bool",
+            "tooltip": true,
+            "default": true
+        },
+        "isPortalUser": {
+            "type": "bool"
+        },
+        "isSuperAdmin": {
+            "type": "bool",
+            "default": false,
+            "disabled": true
+        },
+        "title": {
+            "type": "varchar",
+            "maxLength": 100,
+            "trim": true
+        },
+        "emailAddress": {
+            "type": "email",
+            "required": false
+        },
+        "phoneNumber": {
+            "type": "phone",
+            "typeList": ["Mobile", "Office", "Home", "Fax", "Other"],
+            "defaultType": "Mobile"
+        },
+        "token": {
+            "type": "varchar",
+            "notStorable": true,
+            "disabled": true
+        },
+        "defaultTeam": {
+            "type": "link",
+            "tooltip": true
+        },
+        "acceptanceStatus": {
+            "type": "varchar",
+            "notStorable": true,
+            "disabled": true
+        },
+        "teamRole": {
+            "type": "varchar",
+            "notStorable": true,
+            "disabled": true
+        },
+        "teams": {
+            "type": "linkMultiple",
+            "tooltip": true,
+            "columns": {
+                "role": "userRole"
+            },
+            "view": "views/user/fields/teams",
+            "default": "javascript: return {teamsIds: []}"
+        },
+        "roles": {
+            "type": "linkMultiple",
+            "tooltip": true
+        },
+        "portals": {
+            "type": "linkMultiple",
+            "tooltip": true
+        },
+        "portalRoles": {
+            "type": "linkMultiple",
+            "tooltip": true
+        },
+        "contact": {
+            "type": "link",
+            "view": "views/user/fields/contact"
+        },
+        "accounts": {
+            "type": "linkMultiple"
+        },
+        "account": {
+            "type": "link",
+            "notStorable": true,
+            "readOnly": true
+        },
+        "portal": {
+            "type": "link",
+            "notStorable": true,
+            "readOnly": true,
+            "disabled": true
+        },
+        "avatar": {
+            "type": "image",
+            "view": "views/user/fields/avatar",
+            "previewSize": "small"
+        },
+        "sendAccessInfo": {
+            "type": "bool",
+            "notStorable": true,
+            "disabled": true
+        },
+        "gender": {
+            "type": "enum",
+            "options": ["", "Male", "Female", "Neutral"],
+            "default": ""
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        }
+    },
+    "links": {
+        "defaultTeam": {
+            "type": "belongsTo",
+            "entity": "Team"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "foreign": "users",
+            "additionalColumns": {
+                "role": {
+                    "type": "varchar",
+                    "len": 100
+                }
+            },
+            "layoutRelationshipsDisabled": true
+        },
+        "roles": {
+            "type": "hasMany",
+            "entity": "Role",
+            "foreign": "users",
+            "layoutRelationshipsDisabled": true
+        },
+        "portals": {
+            "type": "hasMany",
+            "entity": "Portal",
+            "foreign": "users",
+            "layoutRelationshipsDisabled": true
+        },
+        "portalRoles": {
+            "type": "hasMany",
+            "entity": "PortalRole",
+            "foreign": "users",
+            "layoutRelationshipsDisabled": true
+        },
+        "preferences": {
+            "type": "hasOne",
+            "entity": "Preferences"
+        },
+        "meetings": {
+            "type": "hasMany",
+            "entity": "Meeting",
+            "foreign": "users"
+        },
+        "calls": {
+            "type": "hasMany",
+            "entity": "Call",
+            "foreign": "users"
+        },
+        "emails": {
+            "type": "hasMany",
+            "entity": "Email",
+            "foreign": "users"
+        },
+        "notes": {
+            "type": "hasMany",
+            "entity": "Note",
+            "foreign": "users",
+            "layoutRelationshipsDisabled": true
+        },
+        "contact": {
+            "type": "belongsTo",
+            "entity": "Contact",
+            "foreign": "portalUser"
+        },
+        "accounts": {
+            "type": "hasMany",
+            "entity": "Account",
+            "foreign": "portalUsers",
+            "relationName": "AccountPortalUser"
+        }
+    },
+    "collection": {
+        "sortBy": "userName",
+        "asc": true,
+        "textFilterFields": ["name", "userName"]
+    }
+}

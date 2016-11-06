@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "name": "Nome",
+    "body": "Corpo",
+    "entityType": "Tipo Entitàe",
+    "header": "Intestazione",
+    "footer": "Piè di pagina",
+    "leftMargin": "Margine Sinistro",
+    "topMargin": "Marigne Superiore",
+    "rightMargin": "Margine Destro",
+    "bottomMargin": "Margine Inferiore",
+    "printFooter": "Stampa piè di Pagina",
+    "footerPosition": "Posizione piè  di pagina"
+  },
+  "labels": {
+    "Create Template": "Crea Modello"
+  },
+  "tooltips": {
+    "footer": "Utilizzare {pageNumber} per stampare il numero di pagina ."
+  }
+}

@@ -1,0 +1,29 @@
+{
+   "params":[
+      {
+         "name":"required",
+         "type":"bool",
+         "default":false
+      },
+      {
+         "name":"default",
+         "type":"varchar"
+      },
+      {
+         "name":"after",
+         "type":"varchar"
+      },
+      {
+         "name":"before",
+         "type":"varchar"
+      },
+      {
+         "name":"audited",
+         "type":"bool"
+      }
+   ],
+   "filter": true,
+   "fieldDefs":{
+      "notNull":false
+   }
+}

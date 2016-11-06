@@ -1,0 +1,37 @@
+[
+    {
+        "label": "",
+        "rows": [
+            [
+                {"name": "name"}
+            ],
+            [
+                {"name": "status"}
+            ],
+            [
+                {"name": "startAt", "fullWidth": true}
+            ],
+            [
+                {"name": "targetLists", "fullWidth": true}
+            ],
+            [
+                {"name": "excludingTargetLists", "fullWidth": true}
+            ],
+            [
+                {"name": "emailTemplate", "fullWidth": true}
+            ],
+            [
+                {"name": "storeSentEmails"},
+                {"name": "optOutEntirely"}
+            ],
+            [
+                {"name": "fromAddress"},
+                {"name": "fromName"}
+            ],
+            [
+                {"name": "replyToAddress"},
+                {"name": "replyToName"}
+            ]
+        ]
+    }
+]

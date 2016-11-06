@@ -1,0 +1,12 @@
+[
+    {
+        "label":"",
+        "rows":[
+                [{"name":"name", "fullWidth": true}],
+                [{"name":"website"}, {"name": "billingAddressCountry"}],
+                [{"name":"emailAddress", "fullWidth": true}],
+                [{"name":"phoneNumber", "fullWidth": true}],
+                [{"name":"type"}, {"name":"industry"}]
+            ]
+        }
+]

@@ -1,0 +1,35 @@
+{
+    "fields": {
+        "name": "Ім'я",
+        "status": "Статус",
+        "host": "Хост",
+        "username": "Ім'я користувача",
+        "password": "Пароль",
+        "port": "Порт",
+        "monitoredFolders": "Відслідковувані теки",
+        "ssl": "SSL",
+        "fetchSince": "Вибірки з",
+        "emailAddress": "Поштова скринька"
+    },
+    "links": {
+    },
+    "options": {
+        "status": {
+            "Active": "Активний",
+            "Inactive": "Неактивний"
+        }
+    },
+    "labels": {
+        "Create EmailAccount": "Додати емейл-акаунт",
+        "IMAP": "IMAP",
+        "Main": "Основне",
+        "Test Connection": "Перевірка з'єднання"
+    },
+    "messages": {
+        "couldNotConnectToImap": "Не вдається підключитися до сервера IMAP",
+        "connectionIsOk": "Connection is Ok"
+    },
+    "tooltips": {
+        "monitoredFolders": "You can add 'Sent' folder to sync emails sent from external email client."
+    }
+}

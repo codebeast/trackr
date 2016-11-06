@@ -1,0 +1,51 @@
+{
+  "labels": {
+    "Fields": "Campi",
+    "Relationships": "Relazioni"
+  },
+  "fields": {
+    "name": "Nome",
+    "type": "Tipo",
+    "labelSingular": "Etichetta Singola",
+    "labelPlural": "Etichetta Multipla",
+    "stream": "Stream",
+    "label": "Etichetta",
+    "linkType": "Link Type",
+    "entityForeign": "Entità Esterna",
+    "linkForeign": "Collegamento Esterno",
+    "link": "Link",
+    "labelForeign": "Label Esterna",
+    "sortBy": "Impostazione predefinita ( campo)",
+    "sortDirection": "Impostazione predefinita ( indirizzo)",
+    "relationName": "Tab Secono Nome",
+    "linkMultipleField": "Collegamento Multiplo ai Campi",
+    "linkMultipleFieldForeign": "Collegamento Esterno Link Multiplo ai Campi",
+    "disabled": "Disabilitato",
+    "textFilterFields": "Filtro testuale Campi"
+  },
+  "options": {
+    "type": {
+      "": "Nessun",
+      "Base": "Base",
+      "Person": "Persone",
+      "CategoryTree": "Albero delle Categorie",
+      "Event": "Evento"
+    },
+    "linkType": {
+      "manyToMany": "Molti-a-Molti",
+      "oneToMany": "Uno-a-Molti",
+      "manyToOne": "Molti-a-Uno",
+      "parentToChildren": "Padre-a-Figlio",
+      "childrenToParent": "Figlio-a-Padre"
+    },
+    "sortDirection": {
+      "asc": "Ascendente",
+      "desc": "Discendente"
+    }
+  },
+  "messages": {
+    "entityCreated": "L'Entità è stata creata",
+    "linkAlreadyExists": "Nome del link errato.",
+    "linkConflict": "Nome conflitto : link o campo con lo stesso nome già esistente"
+  }
+}

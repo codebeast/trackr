@@ -1,0 +1,25 @@
+{
+   "params":[
+      {
+         "name":"required",
+         "type":"bool",
+         "default":false
+      },
+      {
+         "name":"default",
+         "type":"varchar"
+      },
+      {
+         "name":"maxLength",
+         "type":"int"
+      },
+      {
+         "name":"audited",
+         "type":"bool"
+      }
+   ],
+   "filter": true,
+   "fieldDefs":{
+      "type":"varchar"
+   }
+}

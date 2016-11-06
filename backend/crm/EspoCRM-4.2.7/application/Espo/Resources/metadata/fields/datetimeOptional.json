@@ -1,0 +1,42 @@
+{
+   "params":[
+      {
+         "name": "required",
+         "type": "bool",
+         "default": false
+      },
+      {
+         "name":"default",
+         "type":"varchar"
+      },
+      {
+         "name":"after",
+         "type":"varchar"
+      },
+      {
+         "name":"before",
+         "type":"varchar"
+      },
+      {
+         "name":"audited",
+         "type":"bool"
+      }
+   ],
+   "actualFields":[
+      "",
+      "date"
+   ],
+   "fields":{
+      "date": {
+         "type": "date",
+         "disabled": true
+      }
+   },
+   "filter": true,
+   "notCreatable": true,
+   "fieldDefs":{
+      "type":"datetime",
+      "notNull":false
+   },
+   "view": "Fields.DatetimeOptional"
+}

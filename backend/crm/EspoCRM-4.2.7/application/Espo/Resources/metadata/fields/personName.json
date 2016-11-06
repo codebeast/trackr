@@ -1,0 +1,25 @@
+{
+   "actualFields":[
+      "salutation",
+      "first",
+      "last"
+   ],
+   "fields":{
+      "salutation":{
+         "type":"enum"
+      },
+      "first":{
+         "type":"varchar"
+      },
+      "last":{
+         "type":"varchar"
+      }
+   },
+   "naming":"prefix",
+   "notMergeable":true,
+   "notCreatable": true,
+   "filter": true,
+   "fieldDefs":{
+      "notStorable":true
+   }
+}
