@@ -26,8 +26,11 @@ public class Receiver {
     @RabbitListener(queues = "unprocessed")
     public void processOrder(String data, Channel channel,
                              @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
+
+        //log.error("processing: " + data);
+
+
         channel.basicAck(tag, true);
-        log.error("processing: " + data);
     }
 
 }

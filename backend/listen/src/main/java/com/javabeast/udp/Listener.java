@@ -22,10 +22,10 @@ import java.util.concurrent.CountDownLatch;
  */
 
 @Configuration
-public class UDPListener {
+public class Listener {
 
 
-    private Log log = LogFactory.getLog(UDPListener.class);
+    private Log log = LogFactory.getLog(Listener.class);
 
     @Value("${server.port}")
     private String port;

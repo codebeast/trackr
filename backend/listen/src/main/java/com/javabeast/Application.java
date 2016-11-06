@@ -1,12 +1,11 @@
 package com.javabeast;
 
 import com.javabeast.ampq.AMPQService;
-import com.javabeast.udp.UDPListener;
+import com.javabeast.udp.Listener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import reactor.spring.context.config.EnableReactor;
 
@@ -19,9 +18,8 @@ import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @EnableReactor
-@Import({UDPListener.class, AMPQService.class})
+@Import({Listener.class, AMPQService.class})
 @EnableAutoConfiguration
-@ComponentScan
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
