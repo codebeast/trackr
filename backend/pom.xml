@@ -17,6 +17,7 @@
     <modules>
         <module>listen</module>
         <module>parser</module>
+        <module>../domain</module>
     </modules>
 
     <properties>
