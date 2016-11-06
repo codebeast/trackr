@@ -32,6 +32,12 @@
         </dependency>
 
         <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectreactor</groupId>
             <artifactId>reactor-net</artifactId>
             <version>${reactor.version}</version>
@@ -56,5 +62,5 @@
             <url>https://repo.spring.io/libs-milestone</url>
         </repository>
     </repositories>
-  
+
 </project>

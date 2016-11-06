@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
-public class Writer {
+public class AMPQConnection {
 
     @Value("${trackr.exchange}")
     private String exchange;

@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +30,16 @@ public class Receiver {
 
         //log.error("processing: " + data);
 
+        final String result = getResult(data);
+        System.out.println(result);
+
 
         channel.basicAck(tag, true);
+    }
+
+    @Cacheable("getResult")
+    public String getResult(final String input) {
+            return "hi";
     }
 
 }
