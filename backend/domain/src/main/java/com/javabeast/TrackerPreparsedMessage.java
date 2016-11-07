@@ -7,10 +7,9 @@ import java.util.Date;
  *
  */
 
-public class TrackerMessage {
+public class TrackerPreparsedMessage {
 
     private Date timeStamp;
     private byte [] data;
-
 
 }
