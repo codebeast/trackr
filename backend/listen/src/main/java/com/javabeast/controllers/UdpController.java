@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by jeffreya on 10/12/2016.
  */
-@RestController
+@RestController(value = "upd")
 public class UdpController {
 
     @GetMapping
     public String get() {
-        return null;
+        return "This is the udp controller";
     }
 
     @PostMapping

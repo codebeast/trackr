@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import reactor.spring.context.config.EnableReactor;
 
@@ -19,8 +20,9 @@ import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @EnableReactor
-@Import({Listener.class, AMPQService.class, UdpController.class})
+@Import({Listener.class, AMPQService.class})
 @EnableAutoConfiguration
+@ComponentScan
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
