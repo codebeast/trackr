@@ -3,6 +3,7 @@ package com.javabeast;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,9 +13,9 @@ import java.util.Date;
 
 @Data
 @Builder
-public class TrackerPreParsedMessage {
+public class TrackerPreParsedMessage implements Serializable {
 
-    private Date timeStamp;
-    private byte [] data;
+    private String message;
+    private Date timestamp;
 
 }

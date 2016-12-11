@@ -27,8 +27,8 @@ import java.util.concurrent.CountDownLatch;
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        ApplicationContext ctx = SpringApplication.run(Application.class);
-        CountDownLatch latch = ctx.getBean(CountDownLatch.class);
+        final ApplicationContext ctx = SpringApplication.run(Application.class);
+        final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
         latch.await();
     }
 }

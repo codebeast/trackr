@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+
 /**
  * Created by jeffreya on 07/11/2016.
  * Message Parser
@@ -29,11 +30,9 @@ public class MessageParser {
     }
 
     public void parseMessage(byte[] bytes) {
-        final TrackerPreParsedMessage trackerPreParsedMessage = TrackerPreParsedMessage.builder()
-                .timeStamp(new Date())
-                .data(bytes)
-                .build();
-        rabbitTemplate.convertAndSend(unprocessedQueue, trackerPreParsedMessage);
+        rabbitTemplate.convertAndSend(unprocessedQueue, TrackerPreParsedMessage.builder()
+                .timestamp(new Date())
+                .message("hello world").build());
     }
 
 }

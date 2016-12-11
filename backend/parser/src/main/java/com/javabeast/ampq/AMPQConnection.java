@@ -53,7 +53,6 @@ public class AMPQConnection {
         factory.setConcurrentConsumers(Integer.parseInt(numberOfConsumers));
         factory.setMaxConcurrentConsumers(Integer.parseInt(maxNumberOfConsumers));
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-        factory.setMessageConverter(new Jackson2JsonMessageConverter());
         return factory;
     }
 
