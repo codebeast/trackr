@@ -1,6 +1,7 @@
 package com.javabeast.ampq;
 
 
+import com.javabeast.TrackerPreParsedMessage;
 import com.rabbitmq.client.Channel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,19 +25,19 @@ public class Unprocessed {
     private Log log = LogFactory.getLog(Unprocessed.class);
 
     @RabbitListener(queues = "unprocessed")
-    public void processOrder(String data, Channel channel,
+    public void processOrder(TrackerPreParsedMessage trackerPreParsedMessage, Channel channel,
                              @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
 
         //log.error("processing: " + data);
 
-        final String result = getResult(data);
-        System.out.println(result);
+        final String result = getResult(new String(trackerPreParsedMessage.getData()));
+        log.error(trackerPreParsedMessage.getTimeStamp() + " : " + result);
 
 
         channel.basicAck(tag, true);
     }
 
-    @Cacheable("getResult")
+    //@Cacheable("getResult")
     public String getResult(final String input) {
             return "hi";
     }

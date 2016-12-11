@@ -1,6 +1,7 @@
 package com.javabeast;
 
 import com.javabeast.ampq.AMPQService;
+import com.javabeast.controllers.UdpController;
 import com.javabeast.udp.Listener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,13 +19,13 @@ import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @EnableReactor
-@Import({Listener.class, AMPQService.class})
+@Import({Listener.class, AMPQService.class, UdpController.class})
 @EnableAutoConfiguration
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        ApplicationContext ctx = SpringApplication.run(Application.class);
-        CountDownLatch latch = ctx.getBean(CountDownLatch.class);
+        final ApplicationContext ctx = SpringApplication.run(Application.class);
+        final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
         latch.await();
     }
 }

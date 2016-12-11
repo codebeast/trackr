@@ -1,5 +1,6 @@
 package com.javabeast.udp;
 
+import com.javabeast.ampq.MessageParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.core.Binding;
@@ -24,17 +25,14 @@ import java.util.concurrent.CountDownLatch;
 @Configuration
 public class Listener {
 
-
     private Log log = LogFactory.getLog(Listener.class);
 
     @Value("${server.port}")
     private String port;
 
-    @Value("${trackr.unprocessed.queue}")
-    private String unprocessedQueue;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private MessageParser messageParser;
 
     @Autowired
     private Binding binding;
@@ -45,7 +43,7 @@ public class Listener {
                 .env(env)
                 .listen(Integer.valueOf(port))
                 .codec(StandardCodecs.BYTE_ARRAY_CODEC)
-                .consumeInput(bytes -> rabbitTemplate.convertAndSend(unprocessedQueue, new String(bytes)))
+                .consumeInput(messageParser::parseMessage)
                 .get();
         server.start().await();
         return server;

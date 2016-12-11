@@ -1,5 +1,8 @@
 package com.javabeast;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -7,7 +10,9 @@ import java.util.Date;
  *
  */
 
-public class TrackerPreparsedMessage {
+@Data
+@Builder
+public class TrackerPreParsedMessage {
 
     private Date timeStamp;
     private byte [] data;
