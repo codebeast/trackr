@@ -11,6 +11,7 @@
             <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
     <parent>
@@ -18,6 +19,7 @@
         <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
 
     <build>
         <plugins>
