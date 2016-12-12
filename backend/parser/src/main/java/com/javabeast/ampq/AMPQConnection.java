@@ -31,8 +31,7 @@ public class AMPQConnection {
     @Value("${number.of.consumers.max}")
     private String maxNumberOfConsumers;
 
-    @Bean
-    Queue queue() {
+    @Bean Queue queue() {
         return new Queue(unprocessedQueue, false);
     }
 

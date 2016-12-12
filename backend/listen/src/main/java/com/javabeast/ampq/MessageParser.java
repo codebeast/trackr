@@ -29,7 +29,7 @@ public class MessageParser {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void parseMessage(byte[] bytes) {
+    public void parseMessage(final byte[] bytes) {
         rabbitTemplate.convertAndSend(unprocessedQueue, TrackerPreParsedMessage.builder()
                 .timestamp(new Date())
                 .message("hello world").build());
