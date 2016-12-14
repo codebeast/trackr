@@ -2,6 +2,7 @@ package com.javabeast.ampq;
 
 import com.javabeast.TrackerPreParsedMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.utils.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,10 @@ public class MessageParser {
     }
 
     public void parseMessage(final byte[] bytes) {
-        rabbitTemplate.convertAndSend(unprocessedQueue, TrackerPreParsedMessage.builder()
+        final TrackerPreParsedMessage build = TrackerPreParsedMessage.builder()
                 .timestamp(new Date())
-                .message("hello world").build());
+                .message("hello world").build();
+        rabbitTemplate.convertAndSend(unprocessedQueue, build);
     }
 
 }

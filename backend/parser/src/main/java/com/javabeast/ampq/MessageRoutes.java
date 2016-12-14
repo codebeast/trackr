@@ -3,6 +3,7 @@ package com.javabeast.ampq;
 
 import com.javabeast.TrackerPreParsedMessage;
 import com.javabeast.processors.Geocoder;
+import com.javabeast.repo.TrackerPreParsedMessageRepo;
 import com.rabbitmq.client.Channel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,24 +28,29 @@ public class MessageRoutes {
     @Autowired
     private Geocoder geocoder;
 
+    @Autowired
+    private TrackerPreParsedMessageRepo trackerPreParsedMessageRepo;
+
     @RabbitListener(queues = "unprocessed")
-    public void raw(TrackerPreParsedMessage trackerPreParsedMessage, Channel channel,
-                             @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
+    public void raw(TrackerPreParsedMessage message, Channel channel,
+                    @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("Unprocessed.raw");
-        geocoder.pushMessage(trackerPreParsedMessage);
+        geocoder.pushMessage(message);
+        trackerPreParsedMessageRepo.save(message);
+
         channel.basicAck(tag, true);
     }
 
     @RabbitListener(queues = "reversegeocode")
-    public void reverseGeocode(TrackerPreParsedMessage trackerPreParsedMessage, Channel channel,
-                             @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
+    public void reverseGeocode(TrackerPreParsedMessage message, Channel channel,
+                               @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("Unprocessed.reverseGeocode");
         channel.basicAck(tag, true);
     }
 
     //@Cacheable("getResult")
     //public String getResult(final String input) {
-        //return "hi";
+    //return "hi";
     //}
 
 }

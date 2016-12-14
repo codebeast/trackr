@@ -41,10 +41,6 @@
             <version>2.17.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>net.sf.ehcache</groupId>
@@ -62,6 +58,12 @@
             <groupId>org.projectreactor.spring</groupId>
             <artifactId>reactor-spring-context</artifactId>
             <version>1.1.0.M3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
         </dependency>
 
         <dependency>

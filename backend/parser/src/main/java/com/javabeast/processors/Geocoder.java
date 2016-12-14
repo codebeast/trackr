@@ -1,6 +1,7 @@
 package com.javabeast.processors;
 
 import com.javabeast.TrackerPreParsedMessage;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
