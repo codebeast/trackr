@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.DatatypeConverter;
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -31,10 +33,30 @@ public class MessageParser {
     }
 
     public void parseMessage(final byte[] bytes) {
+        System.out.println("MessageParser.parseMessage");
+
+        final String hexString = new String(bytes).replace("\n", "").replace("\r", "");
+
+
+
+        final String substring = hexString.substring(0, 4);
+
+
         final TrackerPreParsedMessage build = TrackerPreParsedMessage.builder()
                 .timestamp(new Date())
                 .message("hello world").build();
+
+
+
         rabbitTemplate.convertAndSend(unprocessedQueue, build);
+    }
+
+    public static String toHexString(byte[] array) {
+        return DatatypeConverter.printHexBinary(array);
+    }
+
+    public static byte[] toByteArray(String s) {
+        return DatatypeConverter.parseHexBinary(s);
     }
 
 }
