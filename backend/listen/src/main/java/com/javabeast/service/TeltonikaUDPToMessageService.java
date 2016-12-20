@@ -81,17 +81,69 @@ public class TeltonikaUDPToMessageService {
 
     private List<AVLData> parseAVLData(final String data) {
         final String hexData = data.substring(AVL_DATA_OFFSET);
-        //final int codecId = getCodec(hexData);
         final int numOfRecords = getNumberOfRecords(hexData);
+        return getAvlDatas(numOfRecords, hexData);
+    }
 
+    private List<AVLData> getAvlDatas(final int numOfRecords, final String data) {
+        final String hexData = data.substring(4);
         final List<AVLData> avlDataList = new ArrayList<>();
         for (int i = 0; i < numOfRecords; i++) {
+/*
+
+            00000113fc208dff – Timestamp in milliseconds (1185345998335 → 1185345998,335 in Unix Timestamp = 25 Jul 2007 06:46:38 UTC)
+            00 – Priority
+            GPS Element
+            0f14f650 – Longitude 253032016 = 25,3032016º N
+            209cca80 – Latitude 547146368 = 54,7146368 º E
+            006f – Altitude 111 meters
+            00d6 – Angle 214º
+            04 – 4 Visible sattelites
+            0004 – 4 km/h speed
+            IO Element
+            00 – IO element ID of Event generated (in this case when 00 – data generated not on event)
+                04 – 4 IO elements in record
+                03 – 3 IO elements, which length is 1 Byte
+                01 – IO element ID = 01
+                01 – 1’st IO element’s value = 1
+                15 – IO element ID = 21
+                03 – 21’st IO element’s value = 3
+                16 – IO element ID = 22
+                03 – 22’nd IO element’s value = 3
+                00 – 0 IO elements, which value length is 2 Bytes
+                01 – 1 IO element, which value length is 4 Bytes
+                46 – IO element ID = 70
+                5
+                0000015d – 70’th IO element’s value = 349
+                00 – 0 IO elements, which value length is 8 Bytes
+*/
+
+            final String timestampHex = hexData.substring(0, 16);
+            final int priority = Integer.parseInt(hexData.substring(16, 18), RADIX);
+            final String gpsHex = hexData.substring(18, 48);
+            final String ioHex = hexData.substring(48, 100);
+            System.out.println(ioHex);
+
+
+            final int eventId = Integer.parseInt(ioHex.substring(0, 2));
+            final int ioEventsTotal = Integer.parseInt(ioHex.substring(2, 4));
+            final int oneByteEventTotal = Integer.parseInt(ioHex.substring(4, 6));
+            for (int oneByteEventCount = 0; oneByteEventCount < oneByteEventTotal; oneByteEventCount++) {
+                final int elementId = Integer.parseInt(ioHex.substring(6, 8), RADIX);
+                System.out.println(elementId);
+            }
+
+
+//            Timestamp 8
+//            Priority 1
+//            GPS Element 15
+//            IO Element ?
+
+
             final AVLData avlData = AVLData.builder()
                     .build();
             avlDataList.add(avlData);
         }
-
-
         return avlDataList;
     }
 
