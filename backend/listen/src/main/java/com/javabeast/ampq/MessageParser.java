@@ -1,6 +1,8 @@
 package com.javabeast.ampq;
 
 import com.javabeast.TrackerPreParsedMessage;
+import com.javabeast.service.TeltonikaUDPToMessageService;
+import com.javabeast.teltonikia.TeltonikaMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.utils.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +28,20 @@ public class MessageParser {
 
     private final RabbitTemplate rabbitTemplate;
 
+    private final TeltonikaUDPToMessageService teltonikaUDPToMessageService;
+
 
     @Autowired
-    public MessageParser(final RabbitTemplate rabbitTemplate) {
+    public MessageParser(final RabbitTemplate rabbitTemplate, final TeltonikaUDPToMessageService teltonikaUDPToMessageService) {
         this.rabbitTemplate = rabbitTemplate;
+        this.teltonikaUDPToMessageService = teltonikaUDPToMessageService;
     }
 
     public void parseMessage(final byte[] bytes) {
         System.out.println("MessageParser.parseMessage");
-
         final String hexString = new String(bytes).replace("\n", "").replace("\r", "");
+        final TeltonikaMessage teltonikaMessage = teltonikaUDPToMessageService.convertUDPToMessage(bytes);
 
-
-
-        final String substring = hexString.substring(0, 4);
 
 
         final TrackerPreParsedMessage build = TrackerPreParsedMessage.builder()
