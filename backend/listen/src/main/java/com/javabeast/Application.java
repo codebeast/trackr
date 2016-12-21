@@ -1,7 +1,6 @@
 package com.javabeast;
 
 import com.javabeast.ampq.AMPQService;
-import com.javabeast.controllers.UdpController;
 import com.javabeast.udp.Listener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

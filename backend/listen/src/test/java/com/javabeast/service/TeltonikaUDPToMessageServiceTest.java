@@ -1,9 +1,6 @@
 package com.javabeast.service;
 
-import com.javabeast.teltonikia.AVLData;
-import com.javabeast.teltonikia.AVLPacketHeader;
-import com.javabeast.teltonikia.TeltonikaMessage;
-import com.javabeast.teltonikia.UDPChannelHeader;
+import com.javabeast.teltonikia.*;
 import org.junit.Test;
 
 import java.util.List;
@@ -74,6 +71,8 @@ public class TeltonikaUDPToMessageServiceTest {
         final AVLData avlData = avlDataList.get(0);
         assertNotNull(avlData);
 
+        final GpsElement gpsElement = avlData.getGpsElement();
+        assertNotNull(gpsElement);
     }
 
 

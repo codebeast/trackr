@@ -4,13 +4,11 @@ import com.javabeast.TrackerPreParsedMessage;
 import com.javabeast.service.TeltonikaUDPToMessageService;
 import com.javabeast.teltonikia.TeltonikaMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.utils.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.DatatypeConverter;
-import java.util.Arrays;
 import java.util.Date;
 
 

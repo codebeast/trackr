@@ -1,17 +1,16 @@
 package com.javabeast.service;
 
-import com.javabeast.teltonikia.AVLData;
-import com.javabeast.teltonikia.AVLPacketHeader;
-import com.javabeast.teltonikia.TeltonikaMessage;
-import com.javabeast.teltonikia.UDPChannelHeader;
+import com.javabeast.teltonikia.*;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.DatatypeConverter;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
+@SuppressWarnings("UnusedAssignment")
 @Service
 public class TeltonikaUDPToMessageService {
 
@@ -86,70 +85,91 @@ public class TeltonikaUDPToMessageService {
         return getAvlDatas(numOfRecords, hexData);
     }
 
+    @SuppressWarnings("UnusedAssignment")
     private List<AVLData> getAvlDatas(final int numOfRecords, final String data) {
         final String hexData = data.substring(4);
         final List<AVLData> avlDataList = new ArrayList<>();
 
-        int offset = 0;
-
-        for (int i = 0; i < 1; i++) {
-            final int start = offset;
-
-            int position = offset;
+        int position = 0;
+        for (int i = 0; i < numOfRecords; i++) {
             final String timestampHex = hexData.substring(position, position += 16);
+            final Date timestamp = getTimestamp(timestampHex);
+
             final int priority = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
             final String gpsHex = hexData.substring(position, position += 30);
-            final String ioHex = hexData.substring(position);
-            //System.out.println(ioHex);
 
+            final GpsElement gpsElement = parseGpsElement(gpsHex);
+
+            final String ioHex = hexData.substring(position);
             final int eventId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
             final int ioEventsTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-            final int oneByteEventTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
 
-            for (int oneByteEventCount = 0; oneByteEventCount < oneByteEventTotal; oneByteEventCount++) {
-                final int elementId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-                final int elementValue = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-                System.out.println("1byte");
-                System.out.println(elementId + ":" + elementValue);
-            }
-
-            final int twoByteEventTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-            for (int twoByteEventCount = 0; twoByteEventCount < twoByteEventTotal; twoByteEventCount++) {
-                final int elementId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-                final int elementValue = Integer.parseInt(hexData.substring(position, position += 4), RADIX);
-                System.out.println("2byte");
-                System.out.println(elementId + ":" + elementValue);
-            }
-
-            final int fourByteEventTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-            for (int fourByteEventCount = 0; fourByteEventCount < fourByteEventTotal; fourByteEventCount++) {
-                final int elementId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-                final int elementValue = Integer.parseInt(hexData.substring(position, position += 8), RADIX);
-                System.out.println("4byte");
-                System.out.println(elementId + ":" + elementValue);
-            }
-
-            final int eightByteEventTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-            for (int eightByteEventCount = 0; eightByteEventCount < eightByteEventTotal; eightByteEventCount++) {
-                final int elementId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
-                final int elementValue = Integer.parseInt(hexData.substring(position, position += 16), RADIX);
-                System.out.println("8byte");
-                System.out.println(elementId + ":" + elementValue);
-            }
-
-
-            offset += (position - start);
-//            Timestamp 8
-//            Priority 1
-//            GPS Element 15
-//            IO Element ?
-
+            final List<IOEvent> eventList = new ArrayList<>();
+            position = getIOEvents(hexData, position, eventList, 2);
+            position = getIOEvents(hexData, position, eventList, 4);
+            position = getIOEvents(hexData, position, eventList, 8);
+            position = getIOEvents(hexData, position, eventList, 16);
 
             final AVLData avlData = AVLData.builder()
+                    .timestamp(timestamp)
+                    .priority(priority)
+                    .ioEventList(eventList)
+                    .gpsElement(gpsElement)
                     .build();
             avlDataList.add(avlData);
         }
         return avlDataList;
+    }
+
+    private Date getTimestamp(String timestampHex) {
+        final long elapsed = Long.parseLong(timestampHex, RADIX);
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(1970, 1, 1);
+        final long time = calendar.getTimeInMillis() + elapsed;
+        return new Date(time);
+    }
+
+    @SuppressWarnings("UnusedAssignment")
+    private GpsElement parseGpsElement(final String gpsHex) {
+        int position = 0;
+        final String longitudeHex = gpsHex.substring(position, position += 8);
+        final String latitudeHex = gpsHex.substring(position, position += 8);
+        final long altitude = Long.parseLong(gpsHex.substring(position, position += 4), RADIX);
+        final long angle = Long.parseLong(gpsHex.substring(position, position += 4), RADIX);
+        final int satellites = Integer.parseInt(gpsHex.substring(position, position + 2), RADIX);
+        final long speed = Long.parseLong(gpsHex.substring(position, position += 4), RADIX);
+        final double longitude = getLatLng(longitudeHex);
+        final double latitude = getLatLng(latitudeHex);
+
+        return GpsElement.builder()
+                .latitude(latitude)
+                .longitude(longitude)
+                .speed(speed)
+                .angle(angle)
+                .altitude(altitude)
+                .satellites(satellites)
+                .build();
+    }
+
+    @SuppressWarnings("UnusedAssignment")
+    private double getLatLng(final String latLng) {
+        int latLngPosition = 0;
+        final long degrees = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
+        final long minutes = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
+        final long seconds = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
+        return Math.signum(degrees) * (Math.abs(degrees) + (minutes / 60.0) + (seconds / 3600.0));
+    }
+
+    @SuppressWarnings("UnusedAssignment")
+    private int getIOEvents(final String hexData, final int startPosition, final List<IOEvent> events, final int stepSize) {
+        int position = startPosition;
+        final int eventTotal = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
+        for (int eventCount = 0; eventCount < eventTotal; eventCount++) {
+            final int elementId = Integer.parseInt(hexData.substring(position, position += 2), RADIX);
+            final int elementValue = Integer.parseInt(hexData.substring(position, position += stepSize), RADIX);
+            events.add(IOEvent.builder().type(elementId).value(elementValue).build());
+        }
+        return position;
     }
 
     private int getNumberOfRecords(String hexData) {
