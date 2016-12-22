@@ -1,5 +1,6 @@
 package com.javabeast.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javabeast.teltonikia.*;
 import org.junit.Test;
 
@@ -21,6 +22,10 @@ public class TeltonikaUDPToMessageServiceTest {
         assertNotNull(teltonikaMessage.getUdpChannelHeader());
         assertNotNull(teltonikaMessage.getAvlPacketHeader());
         assertNotNull(teltonikaMessage.getAvlData());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        final String s = objectMapper.writeValueAsString(teltonikaMessage);
+        System.out.println(s);
     }
 
     @Test
@@ -56,7 +61,6 @@ public class TeltonikaUDPToMessageServiceTest {
         final String imei = avlPacketHeader.getImei();
         final String expectedImei = "1234567890123456";
         assertEquals(expectedImei, imei);
-
     }
 
     @Test
@@ -74,6 +78,5 @@ public class TeltonikaUDPToMessageServiceTest {
         final GpsElement gpsElement = avlData.getGpsElement();
         assertNotNull(gpsElement);
     }
-
 
 }

@@ -37,18 +37,8 @@ public class MessageParser {
 
     public void parseMessage(final byte[] bytes) {
         System.out.println("MessageParser.parseMessage");
-        final String hexString = new String(bytes).replace("\n", "").replace("\r", "");
         final TeltonikaMessage teltonikaMessage = teltonikaUDPToMessageService.convertUDPToMessage(bytes);
-
-
-
-        final TrackerPreParsedMessage build = TrackerPreParsedMessage.builder()
-                .timestamp(new Date())
-                .message("hello world").build();
-
-
-
-        rabbitTemplate.convertAndSend(unprocessedQueue, build);
+        rabbitTemplate.convertAndSend(unprocessedQueue, teltonikaMessage);
     }
 
     public static String toHexString(byte[] array) {

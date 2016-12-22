@@ -1,5 +1,7 @@
 package com.javabeast;
 
+import com.javabeast.teltonikia.GpsElement;
+import com.javabeast.teltonikia.IOEvent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,10 +28,9 @@ public class TrackerPreParsedMessage implements Serializable{
     @Id
     private ObjectId id;
 
-    private String uuid;
-    private String message;
+    private String imei;
     private Date timestamp;
+    private GpsElement gpsElement;
+    private List<IOEvent> ioEvents;
 
-    @DBRef
-    private List<Person> people;
 }
