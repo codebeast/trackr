@@ -1,6 +1,6 @@
 package com.javabeast.controllers;
 
-import com.javabeast.TrackerPreParsedMessage;
+import com.javabeast.TrackerMessage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +16,9 @@ public class UdpController {
     }
 
     @PostMapping
-    public void post(@RequestBody final TrackerPreParsedMessage trackerPreParsedMessage) {
+    public void post(@RequestBody final TrackerMessage trackerMessage) {
         System.out.println("UdpController.post");
-        System.out.println("trackerPreParsedMessage = [" + trackerPreParsedMessage + "]");
+        System.out.println("trackerPreParsedMessage = [" + trackerMessage + "]");
     }
 
 }

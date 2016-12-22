@@ -1,7 +1,6 @@
 package com.javabeast.processors;
 
-import com.javabeast.TrackerPreParsedMessage;
-import org.springframework.amqp.core.Message;
+import com.javabeast.TrackerMessage;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -31,18 +30,9 @@ public class Geocoder {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "reversegeocode", durable = "true"),
-            exchange = @Exchange(value = "spring-boot-exchange",
-                    ignoreDeclarationExceptions = "true",
-                    type = "topic",
-                    durable = "true"),
-            key = "orderRoutingKey"))
-    public void pushMessage(final TrackerPreParsedMessage message) {
-        System.out.println("Geocoder.pushMessage");
+    public void addToQueue(final TrackerMessage message) {
         rabbitTemplate.convertAndSend(reverseGeocoderQueue, message);
     }
-
 
 
 

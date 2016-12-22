@@ -1,6 +1,6 @@
 package com.javabeast.udp;
 
-import com.javabeast.ampq.MessageParser;
+import com.javabeast.ampq.UdpMessageParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.core.Binding;
@@ -31,7 +31,7 @@ public class Listener {
 
 
     @Autowired
-    private MessageParser messageParser;
+    private UdpMessageParser udpMessageParser;
 
     @Autowired
     private Binding binding;
@@ -42,7 +42,7 @@ public class Listener {
                 .env(env)
                 .listen(Integer.valueOf(port))
                 .codec(StandardCodecs.BYTE_ARRAY_CODEC)
-                .consumeInput(messageParser::parseMessage)
+                .consumeInput(udpMessageParser::parseMessage)
                 .get();
         server.start().await();
         return server;

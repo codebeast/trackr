@@ -21,7 +21,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackerPreParsedMessage implements Serializable{
+public class TrackerMessage implements Serializable{
 
     private static final long serialVersionUID = -4557304960075040713L;
 
