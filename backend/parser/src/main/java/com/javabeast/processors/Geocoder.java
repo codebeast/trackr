@@ -31,7 +31,8 @@ public class Geocoder {
     }
 
     public void addToQueue(final TrackerMessage message) {
-        rabbitTemplate.convertAndSend(reverseGeocoderQueue, message);
+        System.out.println("Geocoder.addToQueue");
+        rabbitTemplate.convertAndSend("reversegeocode", message);
     }
 
 
