@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -37,15 +39,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import codebeast.trackr.domain.DeviceMessage;
-import cz.msebera.android.httpclient.Header;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -138,30 +139,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.i(TAG, "location should not be null");
         }
 
+        final String androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        final TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        final String imei = telephonyManager.getDeviceId();
+
         final DeviceMessage deviceMessage = new DeviceMessage()
-                .setDeviceId("myid")
-                .setImei("imei")
+                .setDeviceId(androidDeviceId)
+                .setImei(imei)
                 .setLat(location.getLatitude())
                 .setLng(location.getLongitude())
                 .setSpeed(location.getSpeed())
                 .setAccuracy(location.getAccuracy())
                 .setDeviceTimestamp(location.getTime())
                 .setSystemTimestamp(new Date().getTime());
-        System.out.println(deviceMessage);
+        Log.i(TAG, "deviceMessage: " + deviceMessage);
+        new UpdateLocation().execute(deviceMessage);
 
-        AsyncHttpClient client = new AsyncHttpClient();
+    }
 
-        client.post("http://192.168.1.7:5554/devicemessage", new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Log.i(TAG, "onSuccess");
-            }
+    private class UpdateLocation extends AsyncTask<DeviceMessage, Void, DeviceMessage> {
+        @Override
+        protected DeviceMessage doInBackground(DeviceMessage... params) {
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.i(TAG, "failure");
-            }
-        });
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+            final Boolean aBoolean = restTemplate.postForObject("http://192.168.1.7:5554/devicemessage", params[0], Boolean.class);
+            Log.i(TAG, "aBoolean: " + aBoolean);
+            return params[0];
+        }
+
+        @Override
+        protected void onPostExecute(DeviceMessage result) {
+            Log.i(TAG, "posted: " + result);
+        }
     }
 
 
