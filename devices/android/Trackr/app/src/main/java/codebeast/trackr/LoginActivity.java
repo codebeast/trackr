@@ -37,8 +37,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -104,6 +109,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 //attemptLogin();
                 //  showLocation();
 
+
+                testGet();
+
                 if (ActivityCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -123,13 +131,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         registerListener();
+    }
+
+    private void testGet() {
+        Log.i(TAG, "testGet");
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        client.post("http://192.168.1.7:5554/devicemessage", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.i(TAG, "onSuccess");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.i(TAG, "failure");
+            }
+        });
 
     }
 
     public void registerListener() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, locationListener);
         }
     }
 
