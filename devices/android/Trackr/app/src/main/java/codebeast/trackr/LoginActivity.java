@@ -41,8 +41,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import codebeast.trackr.domain.DeviceMessage;
 import cz.msebera.android.httpclient.Header;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -106,12 +108,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                //  showLocation();
-
-
-                testGet();
-
                 if (ActivityCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -119,6 +115,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 Log.i(TAG, "lastknown:" + lastKnownLocation);
                 mLatitudeText.setText(lastKnownLocation.toString());
+
+                sendLocation(lastKnownLocation);
             }
         });
 
@@ -133,8 +131,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         registerListener();
     }
 
-    private void testGet() {
-        Log.i(TAG, "testGet");
+
+    private void sendLocation(final Location location) {
+
+        if (location == null) {
+            Log.i(TAG, "location should not be null");
+        }
+
+        final DeviceMessage deviceMessage = new DeviceMessage()
+                .setDeviceId("myid")
+                .setImei("imei")
+                .setLat(location.getLatitude())
+                .setLng(location.getLongitude())
+                .setSpeed(location.getSpeed())
+                .setAccuracy(location.getAccuracy())
+                .setDeviceTimestamp(location.getTime())
+                .setSystemTimestamp(new Date().getTime());
+        System.out.println(deviceMessage);
+
         AsyncHttpClient client = new AsyncHttpClient();
 
         client.post("http://192.168.1.7:5554/devicemessage", new AsyncHttpResponseHandler() {
@@ -148,8 +162,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Log.i(TAG, "failure");
             }
         });
-
     }
+
 
     public void registerListener() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
