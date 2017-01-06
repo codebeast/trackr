@@ -18,6 +18,7 @@
         <module>listen</module>
         <module>parser</module>
         <module>domain</module>
+        <module>restlistener</module>
     </modules>
 
     <properties>
