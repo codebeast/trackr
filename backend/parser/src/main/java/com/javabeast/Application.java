@@ -7,16 +7,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.client.RestTemplate;
 import reactor.spring.context.config.EnableReactor;
 
 import java.util.concurrent.CountDownLatch;
 
-/**
- * Created by jeffreya on 05/11/2016.
- *
- */
 
 @SpringBootApplication
 @EnableReactor
@@ -28,7 +26,10 @@ public class Application {
 
     public static void main(String[] args) throws InterruptedException {
         final ApplicationContext ctx = SpringApplication.run(Application.class);
-        final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
-        latch.await();
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

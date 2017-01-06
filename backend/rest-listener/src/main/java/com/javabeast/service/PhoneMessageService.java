@@ -11,17 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 
-/**
- * Created by jeffreya on 07/11/2016.
- * Message Parser
- */
 
 @Service
 public class PhoneMessageService {
 
 
-    @Value("${trackr.unprocessed.queue}")
-    private String unprocessedQueue;
+    @Value("${trackr.trackermessage.queue:trackermessage}")
+    private String trackermessageQueue;
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -37,7 +33,7 @@ public class PhoneMessageService {
     }
 
     private void pushMessage(final TrackerMessage trackerMessage) {
-        rabbitTemplate.convertAndSend(unprocessedQueue, trackerMessage);
+        rabbitTemplate.convertAndSend(trackermessageQueue, trackerMessage);
     }
 
     private TrackerMessage convertToTrackerMessage(final PhoneMessage phoneMessage) {
@@ -48,7 +44,7 @@ public class PhoneMessageService {
                         .latitude(phoneMessage.getLat())
                         .longitude(phoneMessage.getLng())
                         .satellites((int) Math.round(phoneMessage.getAccuracy()))
-                        .speed((long)phoneMessage.getSpeed())
+                        .speed((long) phoneMessage.getSpeed())
                         .build())
                 .build();
     }

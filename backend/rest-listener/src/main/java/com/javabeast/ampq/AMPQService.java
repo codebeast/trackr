@@ -13,15 +13,15 @@ import org.springframework.context.annotation.Configuration;
 @EnableRabbit
 public class AMPQService {
 
-    @Value("${trackr.exchange}")
+    @Value("${trackr.exchange:spring-boot-exchange}")
     private String exchange;
 
-    @Value("${trackr.unprocessed.queue}")
-    private String unprocessedQueue;
+    @Value("${trackr.trackermessage.queue:trackermessage}")
+    private String trackermessageQueue;
 
     @Bean
     Queue queue() {
-        return new Queue(unprocessedQueue, false);
+        return new Queue(trackermessageQueue, true);
     }
 
     @Bean
@@ -31,7 +31,7 @@ public class AMPQService {
 
     @Bean
     public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(unprocessedQueue);
+        return BindingBuilder.bind(queue).to(exchange).with(trackermessageQueue);
     }
 
     @Bean
