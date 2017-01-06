@@ -15,10 +15,10 @@
     </parent>
 
     <modules>
-        <module>listen</module>
-        <module>parser</module>
         <module>domain</module>
         <module>rest-listener</module>
+        <module>listen</module>
+        <module>parser</module>
     </modules>
 
     <properties>
@@ -26,7 +26,8 @@
         <reactor.version>1.1.0.M3</reactor.version>
         <lombok.maven.version>1.16.10.0</lombok.maven.version>
         <lombok.version>1.16.10</lombok.version>
-        <camel.version>2.18.1</camel.version>
+
+
     </properties>
 
     <dependencies>
@@ -35,13 +36,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-boot-starter</artifactId>
-            <version>2.17.0</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -90,11 +84,6 @@
             <version>${lombok.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-rabbitmq</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
 
 
     </dependencies>

@@ -20,7 +20,7 @@ public class PhoneMessage {
 
     private double lat;
     private double lng;
-    private long speed;
+    private double speed;
     private double accuracy;
 
 }

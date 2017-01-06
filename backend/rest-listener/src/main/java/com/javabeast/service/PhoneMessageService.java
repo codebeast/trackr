@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.DatatypeConverter;
 import java.util.Date;
 
 
@@ -49,7 +48,7 @@ public class PhoneMessageService {
                         .latitude(phoneMessage.getLat())
                         .longitude(phoneMessage.getLng())
                         .satellites((int) Math.round(phoneMessage.getAccuracy()))
-                        .speed(phoneMessage.getSpeed())
+                        .speed((long)phoneMessage.getSpeed())
                         .build())
                 .build();
     }

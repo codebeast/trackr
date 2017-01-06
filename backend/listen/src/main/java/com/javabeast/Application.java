@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import reactor.spring.context.config.EnableReactor;
@@ -28,5 +29,10 @@ public class Application {
         final ApplicationContext ctx = SpringApplication.run(Application.class);
         final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
         latch.await();
+    }
+
+    @Bean
+    public CountDownLatch countDownLatch() {
+        return new CountDownLatch(2);
     }
 }
