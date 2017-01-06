@@ -6,9 +6,17 @@ var entrypoint = function () {
     var directives = angular.module("directives", []);
     console.log("created controller, service, directives");
 
+    main.run(function ($rootScope, $timeout) {
+        $rootScope.$on('$viewContentLoaded', function () {
+            $timeout(function () {
+                componentHandler.upgradeAllRegistered();
+            })
+        })
+    });
 
 
-    var mapDirective = directives.directive("mapDirective", function() {
+    //MAPS
+    var mapDirective = directives.directive("mapDirective", function () {
         console.log("create directive");
         return {
             templateUrl: 'templates/map.html'
@@ -16,18 +24,27 @@ var entrypoint = function () {
     });
     mapDirective.$inject = [];
 
-    var vehicleDirective = directives.directive("vehicleDirective", function() {
+    controllers.controller("MapController", ["$scope", function ($scope) {
+    }]);
+
+    //VEHICLES
+    var vehicleDirective = directives.directive("vehicleDirective", function () {
         console.log("create directive");
         return {
             templateUrl: 'templates/vehicles.html'
         };
     });
-    mapDirective.$inject = [];
-
-    controllers.controller("MapController", [ "$scope", function($scope) {
-    }]);
+    vehicleDirective.$inject = [];
 
 
+    //LOGIN
+    var loginDirective = directives.directive("loginDirective", function () {
+        console.log("create login directive");
+        return {
+            templateUrl: 'templates/login_form.html'
+        };
+    });
+    loginDirective.$inject = [];
 
 
 }();
