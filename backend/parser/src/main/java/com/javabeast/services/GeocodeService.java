@@ -24,7 +24,7 @@ public class GeocodeService {
         this.geocodedLocationRepo = geocodedLocationRepo;
     }
 
-    @Cacheable
+    @Cacheable(value = "geocodedLocations", cacheManager = "ehCacheManager")
     public GeocodedLocation getGeocodedLocation(final GpsElement gpsElement) throws IOException {
         try {
             System.out.println("cache miss!");
