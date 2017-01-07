@@ -46,7 +46,7 @@ public class DeviceService {
     }
 
     private Account checkAccountExists(Account account) {
-        final Account loadedAccount = accountRepo.findOne(account.getId().toString());
+        final Account loadedAccount = accountRepo.findByName(account.getName());
         if (loadedAccount == null) {
             System.out.println("Account not found");
             return null;
