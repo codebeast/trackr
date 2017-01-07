@@ -74,8 +74,11 @@ public class MessageRoutes {
     public void reverseGeocode(TrackerMessage message, Channel channel,
                                @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("MessageRoutes.reverseGeocode");
-        clientEventService.addToQueue(message);
-        channel.basicAck(tag, true);
+        final boolean shouldAck = geocoder.reverseGeocode(message);
+        channel.basicAck(tag, shouldAck);
+        if (shouldAck) {
+            clientEventService.addToQueue(ClientEvent.builder().eventType("GEOCODED").build());
+        }
     }
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "ioevents", durable = "true"),
@@ -84,7 +87,7 @@ public class MessageRoutes {
     public void ioevents(TrackerMessage message, Channel channel,
                          @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("MessageRoutes.ioevents");
-        clientEventService.addToQueue(message);
+        clientEventService.addToQueue(ClientEvent.builder().eventType("ioevented").build());
         channel.basicAck(tag, true);
     }
 
@@ -92,7 +95,7 @@ public class MessageRoutes {
     @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "client.updates", durable = "true"),
             exchange = @Exchange(value = "spring-boot-exchange", ignoreDeclarationExceptions = "true", type = "topic", durable = "true"),
             key = "orderRoutingKey"))
-    public void clientUpdates(TrackerMessage message, Channel channel,
+    public void clientUpdates(ClientEvent clientEvent, Channel channel,
                               @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("client.event");
     }

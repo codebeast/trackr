@@ -50,8 +50,8 @@ public class AMPQConnection {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
-        factory.setConcurrentConsumers(Integer.parseInt(numberOfConsumers));
-        factory.setMaxConcurrentConsumers(Integer.parseInt(maxNumberOfConsumers));
+        factory.setConcurrentConsumers(1);
+        factory.setMaxConcurrentConsumers(1);
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return factory;
     }

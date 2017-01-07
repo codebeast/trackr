@@ -20,9 +20,10 @@ public class ClientEventService {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void addToQueue(final TrackerMessage message) {
+    public void addToQueue(final ClientEvent clientEvent) {
         System.out.println("ClientEventService.addToQueue");
-        rabbitTemplate.convertAndSend(clientEventsQueue, message);
+        System.out.println("clientEvent = [" + clientEvent + "]");
+        rabbitTemplate.convertAndSend(clientEventsQueue, clientEvent);
     }
 
 

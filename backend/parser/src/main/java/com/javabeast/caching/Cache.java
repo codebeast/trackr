@@ -20,7 +20,7 @@ public class Cache {
 
     @Bean
     public EhCacheManagerFactoryBean getEhCacheFactory() {
-        EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
+        final EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
         factoryBean.setShared(true);
         return factoryBean;
     }
