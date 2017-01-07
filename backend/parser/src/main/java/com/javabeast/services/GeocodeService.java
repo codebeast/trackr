@@ -5,6 +5,7 @@ import com.javabeast.domain.gecode.MapQuestGeocodeResult;
 import com.javabeast.geocode.GeocodedLocation;
 import com.javabeast.repo.GeocodedLocationRepo;
 import com.javabeast.teltonikia.GpsElement;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +24,7 @@ public class GeocodeService {
         this.geocodedLocationRepo = geocodedLocationRepo;
     }
 
-    @Cacheable("geocodedLocations")
+    @Cacheable
     public GeocodedLocation getGeocodedLocation(final GpsElement gpsElement) throws IOException {
         try {
             System.out.println("cache miss!");
