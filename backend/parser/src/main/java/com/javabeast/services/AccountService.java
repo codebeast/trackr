@@ -40,11 +40,10 @@ public class AccountService {
             return null;
         }
 
-
-
-
-        return createAccount.getAccount();
-
+        final Account savedAccount = accountRepo.save(account);
+        user.setAccount(savedAccount);
+        userRepo.save(user);
+        return savedAccount;
     }
 
 
