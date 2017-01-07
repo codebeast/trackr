@@ -13,8 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Cache {
+
     @Bean
-    public CacheManager getEhCacheManager() {
+    public CacheManager cacheManager() {
         return new EhCacheCacheManager(getEhCacheFactory().getObject());
     }
 

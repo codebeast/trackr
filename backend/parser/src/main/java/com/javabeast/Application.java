@@ -18,10 +18,11 @@ import reactor.spring.context.config.EnableReactor;
 
 @SpringBootApplication
 @EnableReactor
-@Import({AMPQConnection.class, Cache.class})
+
 @EnableAutoConfiguration
 @ComponentScan
 @EnableCaching
+@Import({AMPQConnection.class, Cache.class})
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
