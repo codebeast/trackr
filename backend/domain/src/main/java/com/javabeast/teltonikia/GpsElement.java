@@ -29,8 +29,8 @@ public class GpsElement implements Serializable {
 
     @Override
     public int hashCode() {
-        final double lat = (Math.round(latitude * 10000d) / 10000d);
-        final double lng = (Math.round(latitude * 10000d) / 10000d);
+        final double lat = Math.round(latitude * 10000d) / 10000d;
+        final double lng = Math.round(latitude * 10000d) / 10000d;
         return Long.valueOf(Double.doubleToLongBits(lat)).hashCode() +
                 Long.valueOf(Double.doubleToLongBits(lng)).hashCode();
 

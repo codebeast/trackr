@@ -3,8 +3,6 @@ package com.javabeast.ampq;
 
 import com.javabeast.TrackerMessage;
 import com.javabeast.processors.*;
-import com.javabeast.repo.PersonRepo;
-import com.javabeast.repo.TrackerMessageRepo;
 import com.javabeast.teltonikia.TeltonikaMessage;
 import com.rabbitmq.client.Channel;
 import org.apache.commons.logging.Log;
@@ -45,9 +43,6 @@ public class MessageRoutes {
     @Autowired
     private TrackerMessageService trackerMessageService;
 
-
-    @Autowired
-    private PersonRepo personRepo;
 
     @RabbitListener(queues = "unprocessed")
     public void unprocessedQueue(TeltonikaMessage teltonikaMessage, Channel channel,
