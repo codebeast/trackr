@@ -1,11 +1,14 @@
 package com.javabeast.services;
 
+import com.javabeast.account.Account;
 import com.javabeast.account.Device;
 import com.javabeast.account.dto.CreateDevice;
 import com.javabeast.repo.AccountRepo;
 import com.javabeast.repo.DeviceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class DeviceService {
@@ -27,7 +30,38 @@ public class DeviceService {
             return null;
         }
 
-        return Device.builder().build();
+        final Account account = createDevice.getAccount();
+        final Account loadedAccount = checkAccountExists(account);
+        if (loadedAccount == null) {
+            return null;
+        }
+
+        final Device device = checkDeviceUnique(createDevice);
+        if (device == null) {
+            return null;
+        }
+
+        device.setAccount(loadedAccount);
+        return deviceRepo.save(device);
+    }
+
+    private Account checkAccountExists(Account account) {
+        final Account loadedAccount = accountRepo.findOne(account.getId().toString());
+        if (loadedAccount == null) {
+            System.out.println("Account not found");
+            return null;
+        }
+        return loadedAccount;
+    }
+
+    private Device checkDeviceUnique(CreateDevice createDevice) {
+        final Device device = createDevice.getDevice();
+        final Device byImei = deviceRepo.findByImei(device.getImei());
+        if (byImei != null) {
+            System.out.println("Device already exists");
+            return null;
+        }
+        return device;
     }
 
     private boolean checkDataValid(CreateDevice createDevice) {

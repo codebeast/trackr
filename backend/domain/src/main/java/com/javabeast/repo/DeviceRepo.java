@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface DeviceRepo extends MongoRepository<Device, String> {
 
+    Device findByImei(String imei);
+
 }
