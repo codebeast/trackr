@@ -1,7 +1,7 @@
 package com.javabeast.controllers;
 
 import com.javabeast.account.Account;
-import com.javabeast.account.CreateAccount;
+import com.javabeast.account.dto.CreateAccount;
 import com.javabeast.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

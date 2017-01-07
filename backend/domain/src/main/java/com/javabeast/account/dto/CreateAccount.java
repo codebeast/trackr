@@ -1,5 +1,7 @@
-package com.javabeast.account;
+package com.javabeast.account.dto;
 
+import com.javabeast.account.Account;
+import com.javabeast.account.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

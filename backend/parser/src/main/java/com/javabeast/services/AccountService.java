@@ -1,7 +1,7 @@
 package com.javabeast.services;
 
 import com.javabeast.account.Account;
-import com.javabeast.account.CreateAccount;
+import com.javabeast.account.dto.CreateAccount;
 import com.javabeast.account.User;
 import com.javabeast.repo.AccountRepo;
 import com.javabeast.repo.UserRepo;
