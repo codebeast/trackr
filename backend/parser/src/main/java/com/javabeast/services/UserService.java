@@ -1,11 +1,11 @@
-package com.javabeast.controllers;
+package com.javabeast.services;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("user")
-public class UserController {
+@Service
+public class UserService {
 
 
 }

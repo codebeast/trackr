@@ -1,6 +1,7 @@
 package com.javabeast.controllers;
 
 import com.javabeast.account.Account;
+import com.javabeast.account.CreateAccount;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,8 @@ public class AccountController {
 
 
     @PostMapping
-    public Account createAccount(final Account account) {
+    public Account createAccount(final CreateAccount createAccount) {
+
 
 
 
