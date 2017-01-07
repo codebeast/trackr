@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AccountRepo extends MongoRepository<Account, String> {
 
+    Account findByName(String name);
+
 }
