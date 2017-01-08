@@ -1,3 +1,37 @@
 .full_width{
     width: 100%
 }
+
+.logo-font {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    line-height: 1;
+    color: #767777;
+    font-weight: 500;
+}
+
+
+
+.login-title {
+    font-size: 60px;
+    padding-top: 160px;
+}
+
+.login-sub-title {
+    font-size: 21px;
+    padding-top: 24px;
+}
+
+.error-text {
+    color: #ff958c;
+    font-size: 12px;
+    padding-top: 24px;
+}
+
+.create-account {
+    font-size: 12px;
+    padding-top: 24px;
+}
+
+body {
+    background-color: #faebd7;
+}
