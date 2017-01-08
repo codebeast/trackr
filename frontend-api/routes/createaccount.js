@@ -26,8 +26,6 @@ router.post('/', function (req, res, next) {
             }
         };
 
-        console.log("postdata:" + postData);
-
         var options = {
                 host: "localhost",
                 port: 7001,
