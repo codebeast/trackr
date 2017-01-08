@@ -1,18 +1,12 @@
 <html ng-app="main">
 <head>
     <!-- Material Design Lite -->
-    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.deep_purple-orange.min.css"/>
-    <!-- Material Design icon font -->
+
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-blue.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
-    <script src="javascripts/angular/angular.js"></script>
-    <script src="/javascripts/angular/angular-leaflet-directive.js"></script>
-    <script src="javascripts/angular/app.js"></script>
-
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
+    <link rel="stylesheet" href="stylesheets/style_new.css">
 
 </head>
 <body style="padding: 0px;">
@@ -36,12 +30,55 @@
         </nav>
     </div>
 
+
     <main class="mdl-layout__content">
-        <div class="page-content" style="padding: 50px">
-            <map-directive></map-directive>
-            <vehicle-directive></vehicle-directive>
+        <div class="page-content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--10-col">
+
+
+                    <center>
+                        <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--3-col">
+                            <span class="mdl-chip mdl-chip--contact">
+                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">24</span>
+                                <span class="mdl-chip__text">Active</span>
+                            </span>
+                            </div>
+                            <div class="mdl-cell mdl-cell--3-col">
+                            <span class="mdl-chip mdl-chip--contact">
+                                <span class="mdl-chip__contact mdl-color--yellow mdl-color-text--white">4</span>
+                                <span class="mdl-chip__text">Idle</span>
+                            </span>
+                            </div>
+                            <div class="mdl-cell mdl-cell--3-col">
+                            <span class="mdl-chip mdl-chip--contact">
+                                <span class="mdl-chip__contact mdl-color--red mdl-color-text--white">2</span>
+                                <span class="mdl-chip__text">Inactive</span>
+                            </span>
+                            </div>
+
+                            <div class="mdl-cell mdl-cell--3-col">
+                            <span class="mdl-chip mdl-chip--contact">
+                                <span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">1</span>
+                                <span class="mdl-chip__text">Events</span>
+                            </span>
+
+                            </div>
+                        </div>
+                    </center>
+                    <div style="padding: 10px;"></div>
+                    <map-directive></map-directive>
+
+
+                </div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
+            </div>
         </div>
     </main>
+
+
     <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
             <div class="mdl-logo">Title</div>
@@ -52,5 +89,11 @@
         </div>
     </footer>
 </div>
+
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="javascripts/angular/angular.js"></script>
+<script src="/javascripts/angular/angular-leaflet-directive.js"></script>
+<script src="javascripts/angular/app.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
 </body>
 </html>
