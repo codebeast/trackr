@@ -14,7 +14,7 @@ router.post('/', function (req, res, next) {
 
     login(email, password, function (success) {
         if (success) {
-            res.redirect('maps')
+            res.redirect('/')
         } else {
             res.render('login', {invalid: true});
         }
