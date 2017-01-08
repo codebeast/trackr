@@ -35,3 +35,12 @@
 body {
     background-color: #faebd7;
 }
+
+
+.mdl-chip {
+    background-color: transparent;
+}
+
+.mdl-grid {
+    padding: 0px;
+}

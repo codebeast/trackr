@@ -16,7 +16,21 @@
             <span class="mdl-layout-title">Trackr</span>
             <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <!--<a class="mdl-navigation__link" href=""><span class="mdl-badge" data-badge="4">Events</span></a>-->
+
+
+                <a class="mdl-navigation__link" href=""><span class="mdl-chip mdl-chip--contact">
+                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">1</span>
+                    <span class="mdl-chip__text">Active</span>
+                </span></a> <a class="mdl-navigation__link" href=""><span class="mdl-chip mdl-chip--contact">
+                    <span class="mdl-chip__contact mdl-color-text--white" style="background-color: #e0e06e" >0</span>
+                    <span class="mdl-chip__text">Idle</span>
+                </span></a> <a class="mdl-navigation__link" href=""><span class="mdl-chip mdl-chip--contact">
+                    <span class="mdl-chip__contact mdl-color-text--white" style="background-color: #e06853">2</span>
+                    <span class="mdl-chip__text">Inactive</span>
+                </span></a> <a class="mdl-navigation__link" href=""><span class="mdl-chip mdl-chip--contact">
+                    <span class="mdl-chip__contact mdl-color-text--white" style="background-color: #6f80e0">4</span>
+                    <span class="mdl-chip__text">Events</span>
+                </span></a>
             </nav>
         </div>
     </header>
@@ -25,59 +39,17 @@
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="">Map</a>
             <a class="mdl-navigation__link" href="">Devices</a>
+            <a class="mdl-navigation__link" href="">Jobs</a>
             <a class="mdl-navigation__link" href="">Account</a>
         </nav>
     </div>
 
 
     <main class="mdl-layout__content">
-        <div class="page-content">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--1-col"></div>
-                <div class="mdl-cell mdl-cell--10-col">
 
+        <map-directive></map-directive>
 
-                    <center>
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--3-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">24</span>
-                                <span class="mdl-chip__text">Active</span>
-                            </span>
-                            </div>
-                            <div class="mdl-cell mdl-cell--3-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                                <span class="mdl-chip__contact mdl-color--yellow mdl-color-text--white">4</span>
-                                <span class="mdl-chip__text">Idle</span>
-                            </span>
-                            </div>
-                            <div class="mdl-cell mdl-cell--3-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                                <span class="mdl-chip__contact mdl-color--red mdl-color-text--white">2</span>
-                                <span class="mdl-chip__text">Inactive</span>
-                            </span>
-                            </div>
-
-                            <div class="mdl-cell mdl-cell--3-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                                <span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">1</span>
-                                <span class="mdl-chip__text">Events</span>
-                            </span>
-
-                            </div>
-                        </div>
-                    </center>
-                </div>
-                <div class="mdl-cell mdl-cell--1-col"></div>
-            </div>
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--12-col">
-                    <map-directive></map-directive>
-                </div>
-            </div>
-        </div>
     </main>
-
 
 
 </div>
