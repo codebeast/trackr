@@ -20,22 +20,28 @@
             <div class="logo-font login-title">New Account</div>
             <div class="logo-font login-sub-title">Fill in your details below</div>
 
-            <form action="/">
+            {{#if accountExists}}
+                <div class="error-text">This company already has an account.</div>
+                <div class="mdl-layout-spacer"></div>
+            {{/if}}
+
+            <form action="/createaccount" method="post">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="companyName">
+                    <input class="mdl-textfield__input" type="text" id="companyName" name="companyName">
                     <label class="mdl-textfield__label" for="sample3">Company Name</label>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="email">
+                    <input class="mdl-textfield__input" type="text" id="email" name="email">
                     <label class="mdl-textfield__label" for="sample3">Email Address</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-                    <input class="mdl-textfield__input" type="password" id="password">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password">
                     <label class="mdl-textfield__label" for="sample3">Password</label>
                 </div>
                 <div>
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    <button type="submit"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                         Create My Account
                     </button>
                 </div>
