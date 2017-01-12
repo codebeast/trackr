@@ -59,7 +59,6 @@ var entrypoint = function () {
                 },
                 idleMarker: {
                     lat: 53.110395,
-                    lat: 53.110395,
                     lng: -2.212197,
                     message: "PR12 FGV",
                     draggable: false,
