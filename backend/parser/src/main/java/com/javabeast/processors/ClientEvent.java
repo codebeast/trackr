@@ -1,5 +1,6 @@
 package com.javabeast.processors;
 
+import com.javabeast.TrackerMessage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +15,7 @@ import java.io.Serializable;
 public class ClientEvent implements Serializable {
 
     private String eventType;
+    private TrackerMessage trackerMessage;
+
+
 }

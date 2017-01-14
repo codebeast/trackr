@@ -1,13 +1,20 @@
 package com.javabeast.services;
 
+import com.javabeast.TrackerMessage;
 import com.javabeast.account.Account;
+import com.javabeast.account.Device;
 import com.javabeast.account.dto.CreateAccount;
 import com.javabeast.account.User;
 import com.javabeast.repo.AccountRepo;
+import com.javabeast.repo.DeviceRepo;
+import com.javabeast.repo.TrackerMessageRepo;
 import com.javabeast.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -16,10 +23,16 @@ public class AccountService {
 
     private final UserRepo userRepo;
 
+    private final TrackerMessageRepo trackerMessageRepo;
+
+    private final DeviceRepo deviceRepo;
+
     @Autowired
-    public AccountService(final AccountRepo accountRepo, final UserRepo userRepo) {
+    public AccountService(final AccountRepo accountRepo, final UserRepo userRepo, final TrackerMessageRepo trackerMessageRepo, final DeviceRepo deviceRepo) {
         this.accountRepo = accountRepo;
         this.userRepo = userRepo;
+        this.trackerMessageRepo = trackerMessageRepo;
+        this.deviceRepo = deviceRepo;
     }
 
     public Account createAccount(final CreateAccount createAccount) {
@@ -68,5 +81,16 @@ public class AccountService {
 
         final User user = createAccount.getUser();
         return StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPasswordHash());
+    }
+
+    public List<TrackerMessage> getDevices(final String accountName) {
+        final Account account = accountRepo.findByName(accountName);
+        final List<Device> devices = deviceRepo.findByAccountId(account.getId());
+        final List<TrackerMessage> trackerMessagesList = new ArrayList<>();
+        for (final Device device : devices) {
+            final TrackerMessage top1ByImeiOrderByTimestamp = trackerMessageRepo.findTop1ByImeiOrderByTimestamp(device.getImei());
+            trackerMessagesList.add(top1ByImeiOrderByTimestamp);
+        }
+        return trackerMessagesList;
     }
 }

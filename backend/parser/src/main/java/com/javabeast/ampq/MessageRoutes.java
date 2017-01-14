@@ -72,7 +72,10 @@ public class MessageRoutes {
         final boolean shouldAck = geocoder.reverseGeocode(message);
         channel.basicAck(tag, shouldAck);
         if (shouldAck) {
-            clientEventService.addToQueue(ClientEvent.builder().eventType("GEOCODED").build());
+            clientEventService.addToQueue(ClientEvent.builder()
+                    .eventType("GEOCODED")
+                    .trackerMessage(message)
+                    .build());
         }
     }
 
@@ -82,7 +85,10 @@ public class MessageRoutes {
     public void ioevents(TrackerMessage message, Channel channel,
                          @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
         System.out.println("MessageRoutes.ioevents");
-        clientEventService.addToQueue(ClientEvent.builder().eventType("ioevented").build());
+        clientEventService.addToQueue(ClientEvent.builder()
+                .eventType("ioevented")
+                .trackerMessage(message)
+                .build());
         channel.basicAck(tag, true);
     }
 

@@ -1,13 +1,13 @@
 package com.javabeast.controllers;
 
+import com.javabeast.TrackerMessage;
 import com.javabeast.account.Account;
 import com.javabeast.account.dto.CreateAccount;
 import com.javabeast.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("account")
@@ -24,6 +24,11 @@ public class AccountController {
     @PostMapping
     public Account createAccount(@RequestBody final CreateAccount createAccount) {
         return accountService.createAccount(createAccount);
+    }
+
+    @RequestMapping(value = "/{accountName}/devices", method = RequestMethod.GET)
+    public List<TrackerMessage> getDevices(@RequestParam(value = "accountName") final String accountName) {
+        return accountService.getDevices(accountName);
     }
 
 
