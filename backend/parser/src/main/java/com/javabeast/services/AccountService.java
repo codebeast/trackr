@@ -10,6 +10,7 @@ import com.javabeast.repo.DeviceRepo;
 import com.javabeast.repo.TrackerMessageRepo;
 import com.javabeast.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -83,6 +84,7 @@ public class AccountService {
         return StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPasswordHash());
     }
 
+    @Cacheable(value = "latestPosition", cacheManager = "ehCacheManager")
     public List<TrackerMessage> getDevices(final String accountName) {
         final Account account = accountRepo.findByName(accountName);
         final List<Device> devices = deviceRepo.findByAccountId(account.getId());
