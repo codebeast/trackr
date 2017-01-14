@@ -39,6 +39,7 @@ app.use('/login', login);
 app.use('/device', device);
 app.use('/createaccount', createaccount);
 
+app.set('json spaces', 0);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

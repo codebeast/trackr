@@ -25,7 +25,8 @@ var entrypoint = function () {
     });
     mapDirective.$inject = [];
 
-    var mapController = controllers.controller("MapController", ["$scope", function ($scope) {
+
+    var mapController = controllers.controller("MapController", function ($scope, $http) {
         console.log("creating map controller");
         var local_icons = {
             default_icon: {},
@@ -43,44 +44,42 @@ var entrypoint = function () {
             }
         };
 
+        $scope.markers = {};
+
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/device/all'
+        }).then(function successCallback(response) {
+            var cars = response.data;
+            updateMarkers(cars);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+        function updateMarkers(cars) {
+            $scope.markers = {};
+            for (var index in cars) {
+                var car = cars[index];
+                console.log(car);
+                $scope.markers[car.imei] = {
+                    lat: car.gpsElement.latitude,
+                    lng: car.gpsElement.longitude,
+                    message: car.imei,
+                    draggable: false,
+                    icon: local_icons.active_icon
+                }
+            }
+        }
+
         angular.extend($scope, {
             ukCenter: {
                 lat: 53.490395,
                 lng: -2.252197,
                 zoom: 10
-            },
-            markers: {
-                activeMarker: {
-                    lat: 53.490395,
-                    lng: -2.252197,
-                    message: "SJ56 NFG",
-                    draggable: false,
-                    icon: local_icons.active_icon
-                },
-                idleMarker: {
-                    lat: 53.110395,
-                    lng: -2.212197,
-                    message: "PR12 FGV",
-                    draggable: false,
-                    icon: local_icons.idle_icon
-                },
-                inactiveMarker1: {
-                    lat: 53.690395,
-                    lng: -2.222197,
-                    message: "AJ52 BVG",
-                    draggable: false,
-                    icon: local_icons.inactive_icon
-                },
-                inactiveMarker2: {
-                    lat: 53.790395,
-                    lng: -2.272197,
-                    message: "PO16 OOP",
-                    draggable: false,
-                    icon: local_icons.inactive_icon
-                }
             }
         });
-    }]);
+    });
+    mapController.$inject = ["$scope", "$http"];
 
     //VEHICLES
     var vehicleDirective = directives.directive("vehicleDirective", function () {

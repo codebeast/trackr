@@ -22,12 +22,13 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account createAccount(@RequestBody final CreateAccount createAccount) {
+    public @ResponseBody Account createAccount(@RequestBody final CreateAccount createAccount) {
         return accountService.createAccount(createAccount);
     }
 
+
     @RequestMapping(value = "/{accountName}/devices", method = RequestMethod.GET)
-    public List<TrackerMessage> getDevices(@PathVariable(value = "accountName") final String accountName) {
+    public @ResponseBody List<TrackerMessage> getDevices(@PathVariable(value = "accountName") final String accountName) {
         return accountService.getDevices(accountName);
     }
 
