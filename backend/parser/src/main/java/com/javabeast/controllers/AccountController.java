@@ -27,7 +27,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/{accountName}/devices", method = RequestMethod.GET)
-    public List<TrackerMessage> getDevices(@RequestParam(value = "accountName") final String accountName) {
+    public List<TrackerMessage> getDevices(@PathVariable(value = "accountName") final String accountName) {
         return accountService.getDevices(accountName);
     }
 
