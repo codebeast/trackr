@@ -88,7 +88,7 @@ public class AccountService {
         final List<Device> devices = deviceRepo.findByAccountId(account.getId());
         final List<TrackerMessage> trackerMessagesList = new ArrayList<>();
         for (final Device device : devices) {
-            final TrackerMessage top1ByImeiOrderByTimestamp = trackerMessageRepo.findTop1ByImeiOrderByTimestamp(device.getImei());
+            final TrackerMessage top1ByImeiOrderByTimestamp = trackerMessageRepo.findTop1ByImeiOrderByTimestampDesc(device.getImei());
             trackerMessagesList.add(top1ByImeiOrderByTimestamp);
         }
         return trackerMessagesList;
