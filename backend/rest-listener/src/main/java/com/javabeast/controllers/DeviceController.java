@@ -24,9 +24,15 @@ public class DeviceController {
 
     @PostMapping
     public Boolean post(@RequestBody PhoneMessage phoneMessage) {
-        System.out.println("DeviceController.post");
-        System.out.println(phoneMessage);
         phoneMessageService.convertAndPush(phoneMessage);
+        return true;
+    }
+
+    @PostMapping("multiple")
+    public Boolean post(@RequestBody PhoneMessage[] phoneMessages) {
+        for (final PhoneMessage phoneMessage : phoneMessages) {
+            post(phoneMessage);
+        }
         return true;
     }
 }

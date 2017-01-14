@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 
-
 @Service
 public class PhoneMessageService {
 
@@ -37,16 +36,23 @@ public class PhoneMessageService {
     }
 
     private TrackerMessage convertToTrackerMessage(final PhoneMessage phoneMessage) {
+        final double lat = convertTo4DP(phoneMessage.getLat());
+        final double lng = convertTo4DP(phoneMessage.getLng());
+
         return TrackerMessage.builder()
                 .imei(phoneMessage.getImei())
                 .timestamp(new Date(phoneMessage.getSystemTimestamp()))
                 .gpsElement(GpsElement.builder()
-                        .latitude(phoneMessage.getLat())
-                        .longitude(phoneMessage.getLng())
+                        .latitude(lat)
+                        .longitude(lng)
                         .satellites((int) Math.round(phoneMessage.getAccuracy()))
                         .speed((long) phoneMessage.getSpeed())
                         .build())
                 .build();
+    }
+
+    private double convertTo4DP(final double value) {
+        return Math.round(value * 10000d) / 10000d;
     }
 
 }

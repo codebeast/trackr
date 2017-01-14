@@ -40,26 +40,22 @@ public class Geocoder {
     }
 
     public boolean reverseGeocode(final TrackerMessage trackerMessage) {
-        System.out.println("Geocoder.reverseGeocode");
         final GpsElement gpsElement = trackerMessage.getGpsElement();
 
         try {
-
-            long start = System.currentTimeMillis();
-
-
-            final GeocodedLocation geocodedLocation = geocodeService.getGeocodedLocation(gpsElement);
+            final String position = getPositionString(gpsElement);
+            final GeocodedLocation geocodedLocation = geocodeService.getGeocodedLocation(position);
             gpsElement.setGeocodedLocation(geocodedLocation);
             trackerMessageRepo.save(trackerMessage);
-            long end = System.currentTimeMillis();
-            System.out.println("took:" + (end - start));
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
+    private String getPositionString(final GpsElement gpsElement) {
+        return gpsElement.getLatitude() + "," + gpsElement.getLongitude();
+    }
 
 }

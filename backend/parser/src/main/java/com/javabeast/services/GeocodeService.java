@@ -24,20 +24,32 @@ public class GeocodeService {
         this.geocodedLocationRepo = geocodedLocationRepo;
     }
 
+    public static int CACHE_MISS = 0;
+
     @Cacheable(value = "geocodedLocations", cacheManager = "ehCacheManager")
-    public GeocodedLocation getGeocodedLocation(final GpsElement gpsElement) throws IOException {
-        try {
-            System.out.println("cache miss!");
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        final double latitude = gpsElement.getLatitude();
-        final double longitude = gpsElement.getLongitude();
+    public GeocodedLocation getGeocodedLocation(final String position) throws IOException {
+        final String positions[] = position.split(",");
+        final String latitude = positions[0];
+        final String longitude = positions[1];
+        CACHE_MISS = CACHE_MISS + 1;
+
         final MapQuestGeocodeResult mapQuestGeocodeResult = restTemplate.getForObject("https://www.mapquestapi.com/geocoding/v1/reverse?key=aGuTKpOScwKlumRI93qMRheuNqdyuIEl&location=" + latitude + "," + longitude + "&outFormat=json&thumbMaps=false", MapQuestGeocodeResult.class);
         final GeocodedLocation geocodedLocation = convertFromMapQuest(mapQuestGeocodeResult);
         geocodedLocationRepo.save(geocodedLocation);
         return geocodedLocation;
+    }
+
+    @Cacheable(value = "test", cacheManager = "ehCacheManager")
+    public int test(int test) {
+
+        System.out.println("cachemiss");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return test * 2;
     }
 
     private GeocodedLocation convertFromMapQuest(final MapQuestGeocodeResult mapQuestGeocodeResult) {
