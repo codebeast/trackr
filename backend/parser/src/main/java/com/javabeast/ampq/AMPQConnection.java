@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by jeffreya on 05/11/2016.
- *
  */
 
 @Configuration
@@ -32,7 +31,8 @@ public class AMPQConnection {
     @Value("${number.of.consumers.max}")
     private String maxNumberOfConsumers;
 
-    @Bean Queue queue() {
+    @Bean
+    Queue queue() {
         return new Queue(unprocessedQueue, false);
     }
 
@@ -50,8 +50,8 @@ public class AMPQConnection {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
-        factory.setConcurrentConsumers(1);
-        factory.setMaxConcurrentConsumers(1);
+        factory.setConcurrentConsumers(Integer.parseInt(numberOfConsumers));
+        factory.setMaxConcurrentConsumers(Integer.parseInt(maxNumberOfConsumers));
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return factory;
     }
