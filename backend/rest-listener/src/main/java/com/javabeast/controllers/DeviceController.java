@@ -16,12 +16,6 @@ public class DeviceController {
         this.phoneMessageService = phoneMessageService;
     }
 
-    @GetMapping
-    public String get() {
-        System.out.println("DeviceController.get");
-        return "get";
-    }
-
     @PostMapping
     public Boolean post(@RequestBody PhoneMessage phoneMessage) {
         phoneMessageService.convertAndPush(phoneMessage);

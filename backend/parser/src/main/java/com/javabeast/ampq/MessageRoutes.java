@@ -47,7 +47,7 @@ public class MessageRoutes {
     @RabbitListener(queues = "unprocessed")
     public void unprocessedQueue(TeltonikaMessage teltonikaMessage, Channel channel,
                                  @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-        System.out.println("MessageRoutes.unprocessedQueue");
+        //System.out.println("MessageRoutes.unprocessedQueue");
         messageParser.addToQueue(teltonikaMessage);
         channel.basicAck(tag, true);
     }
@@ -57,7 +57,7 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void trackerMessageQueue(TrackerMessage trackerMessage, Channel channel,
                                     @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-        System.out.println("MessageRoutes.trackerMessageQueue");
+       // System.out.println("MessageRoutes.trackerMessageQueue");
         trackerMessageService.save(trackerMessage);
         pushToRoutes(trackerMessage);
         channel.basicAck(tag, true);
@@ -68,8 +68,8 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void reverseGeocode(TrackerMessage message, Channel channel,
                                @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-        System.out.println("MessageRoutes.reverseGeocode");
-        final boolean shouldAck = geocoder.reverseGeocode(message);
+     //   System.out.println("MessageRoutes.reverseGeocode");
+        final boolean shouldAck = true;//geocoder.reverseGeocode(message);
         channel.basicAck(tag, shouldAck);
         if (shouldAck) {
             clientEventService.addToQueue(ClientEvent.builder()
@@ -84,7 +84,10 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void ioevents(TrackerMessage message, Channel channel,
                          @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-        System.out.println("MessageRoutes.ioevents");
+       // System.out.println("MessageRoutes.ioevents");
+
+        ioEvents.processEvents(message);
+
         clientEventService.addToQueue(ClientEvent.builder()
                 .eventType("ioevented")
                 .trackerMessage(message)
@@ -98,12 +101,12 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void clientUpdates(ClientEvent clientEvent, Channel channel,
                               @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-        System.out.println("client.event");
+        //System.out.println("client.event");
     }
 
 
     private void pushToRoutes(final TrackerMessage message) {
-        System.out.println("MessageRoutes.pushToRoutes");
+      //  System.out.println("MessageRoutes.pushToRoutes");
         geocoder.addToQueue(message);
         ioEvents.addToQueue(message);
     }

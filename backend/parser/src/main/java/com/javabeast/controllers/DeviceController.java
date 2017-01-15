@@ -1,11 +1,14 @@
 package com.javabeast.controllers;
 
-import com.javabeast.TrackerMessage;
 import com.javabeast.account.Device;
 import com.javabeast.account.dto.CreateDevice;
 import com.javabeast.services.DeviceService;
+import com.javabeast.services.Journey;
+import com.javabeast.services.JourneyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("device")
@@ -25,10 +28,8 @@ public class DeviceController {
     }
 
     @GetMapping("{imei}")
-    public TrackerMessage getLastTrackerMessage(@RequestParam("imei") final String imei) {
-
-
-            return null;
+    public List<JourneyDTO> getDeviceJourneys(@PathVariable("imei") final String imei) {
+        return deviceService.getDeviceJourneyDTOStartEndOnly(imei);
     }
 
 

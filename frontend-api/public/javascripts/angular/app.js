@@ -70,7 +70,6 @@ var entrypoint = function () {
                 }
             }
         }
-
         angular.extend($scope, {
             ukCenter: {
                 lat: 53.490395,

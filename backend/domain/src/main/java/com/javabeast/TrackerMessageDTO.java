@@ -15,23 +15,16 @@ import java.util.Date;
 import java.util.List;
 
 
-@Document
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackerMessage implements Serializable{
+public class TrackerMessageDTO implements Serializable{
 
     private static final long serialVersionUID = -4557304960075040713L;
-
-    @Id
-    private ObjectId id;
 
     private String imei;
     private Date timestamp;
     private GpsElement gpsElement;
-    private List<IOEvent> ioEvents;
-
-
 
 }

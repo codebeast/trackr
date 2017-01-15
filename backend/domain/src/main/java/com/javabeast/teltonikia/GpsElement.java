@@ -2,6 +2,7 @@ package com.javabeast.teltonikia;
 
 import com.javabeast.geocode.GeocodedLocation;
 import lombok.*;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +24,11 @@ public class GpsElement implements Serializable {
     private long angle;
     private int satellites;
     private long speed;
+
+    @Transient
+    public String getLatLngString() {
+        return latitude + "," + longitude;
+    }
 
     @DBRef
     private GeocodedLocation geocodedLocation;

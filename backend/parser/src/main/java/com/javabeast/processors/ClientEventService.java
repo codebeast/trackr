@@ -21,8 +21,8 @@ public class ClientEventService {
     }
 
     public void addToQueue(final ClientEvent clientEvent) {
-        System.out.println("ClientEventService.addToQueue");
-        System.out.println("clientEvent = [" + clientEvent + "]");
+        //System.out.println("ClientEventService.addToQueue");
+        //System.out.println("clientEvent = [" + clientEvent + "]");
         rabbitTemplate.convertAndSend(clientEventsQueue, clientEvent);
     }
 

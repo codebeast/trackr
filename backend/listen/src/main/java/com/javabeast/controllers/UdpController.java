@@ -17,8 +17,8 @@ public class UdpController {
 
     @PostMapping
     public void post(@RequestBody final TrackerMessage trackerMessage) {
-        System.out.println("UdpController.post");
-        System.out.println("trackerPreParsedMessage = [" + trackerMessage + "]");
+        //System.out.println("UdpController.post");
+        //System.out.println("trackerPreParsedMessage = [" + trackerMessage + "]");
     }
 
 }
