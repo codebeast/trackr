@@ -8,7 +8,9 @@ import com.javabeast.domain.gecode.DeviceState;
 import com.javabeast.repo.AccountRepo;
 import com.javabeast.repo.DeviceRepo;
 import com.javabeast.repo.TrackerMessageRepo;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -78,26 +80,11 @@ public class DeviceService {
 
     }
 
-
-    public List<JourneyDTO> getDeviceJourneyDTOStartEndOnly(final String imei) {
-        final List<Journey> deviceJourneyStartEndOnly = getDeviceJourneys(imei);
-        final List<JourneyDTO> journeyDTOList = new ArrayList<>();
-        for (final Journey journey : deviceJourneyStartEndOnly) {
-            final List<TrackerMessage> trackerMessageList = journey.getTrackerMessageList();
-            final TrackerMessage start = trackerMessageList.get(0);
-            final TrackerMessage end = trackerMessageList.get(trackerMessageList.size() - 1);
-
-            final JourneyDTO journeyDTO = JourneyDTO.builder().startMessage(start).endMessage(end).build();
-            journeyDTOList.add(journeyDTO);
-
-        }
-        return journeyDTOList;
-    }
-
-    private List<Journey> getDeviceJourneys(final String imei) {
-
+    @Cacheable(value = "startEndJourneys", cacheManager = "ehCacheManager")
+    public List<Journey> getDeviceJourneys(final String imei) {
         final List<TrackerMessage> byImeiOrderByTimestampAsc = trackerMessageRepo.findByImeiOrderByTimestampAsc(imei);
         String lastGpsPosition = byImeiOrderByTimestampAsc.get(0).getGpsElement().getLatLngString();
+
         final List<Journey> journeys = new ArrayList<>();
         DeviceState lastState = DeviceState.STOPPED;
         List<TrackerMessage> journey = null;

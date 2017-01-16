@@ -15,5 +15,11 @@
         <persistence strategy="localTempSwap"/>
     </cache>
 
+    <cache name="startEndJourneys" maxEntriesLocalHeap="1000" maxEntriesLocalDisk="10" diskSpoolBufferSizeMB="20"
+           eternal="false" timeToIdleSeconds="180" timeToLiveSeconds="300" memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
 
 </ehcache>

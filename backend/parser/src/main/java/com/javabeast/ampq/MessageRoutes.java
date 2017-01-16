@@ -69,7 +69,7 @@ public class MessageRoutes {
     public void reverseGeocode(TrackerMessage message, Channel channel,
                                @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
      //   System.out.println("MessageRoutes.reverseGeocode");
-        final boolean shouldAck = true;//geocoder.reverseGeocode(message);
+        final boolean shouldAck = geocoder.reverseGeocode(message);
         channel.basicAck(tag, shouldAck);
         if (shouldAck) {
             clientEventService.addToQueue(ClientEvent.builder()
