@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.DatatypeConverter;
+import java.io.File;
+import java.io.FileOutputStream;
 
 
 /**
@@ -35,10 +37,13 @@ public class UdpMessageParser {
 
     public void parseMessage(final byte[] bytes) {
        // System.out.println("MessageParser.parseMessage");
+
         final TeltonikaMessage teltonikaMessage = teltonikaUDPToMessageService.convertUDPToMessage(bytes);
         System.out.println(teltonikaMessage);
         rabbitTemplate.convertAndSend(unprocessedQueue, teltonikaMessage);
     }
+
+
 
     public static String toHexString(byte[] array) {
         return DatatypeConverter.printHexBinary(array);

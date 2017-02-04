@@ -16,7 +16,7 @@ public class TeltonikaUDPToMessageService {
 
     private static final int RADIX = 16;
     private static final int AVL_PACKET_HEADER_OFFSET = 10;
-    private static final int AVL_PACKET_HEADER_SIZE = 34;
+    private static final int AVL_PACKET_HEADER_SIZE = 36;
     private static final int AVL_DATA_OFFSET = AVL_PACKET_HEADER_OFFSET + AVL_PACKET_HEADER_SIZE;
 
     public TeltonikaMessage convertUDPToMessage(final byte[] bytes) {
@@ -69,14 +69,14 @@ public class TeltonikaUDPToMessageService {
     }
 
     private int getAVLPacketHeaderId(final String hexData) {
-        final String idHex = hexData.substring(0, 2);
+        final String idHex = hexData.substring(0, 4);
         return Integer.parseInt(idHex, RADIX);
     }
 
     private String getImeiNumber(final String hexData) {
-        final String imeiHex = hexData.substring(2, 34);
+        final String imeiHex = hexData.substring(4, 36);
         final byte[] bytes = DatatypeConverter.parseHexBinary(imeiHex);
-        return new String(bytes);
+        return new String(bytes).replaceAll("[^A-Za-z0-9 ]", "");
     }
 
     private List<AVLData> parseAVLData(final String data) {
@@ -123,10 +123,7 @@ public class TeltonikaUDPToMessageService {
 
     private Date getTimestamp(String timestampHex) {
         final long elapsed = Long.parseLong(timestampHex, RADIX);
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(1970, 1, 1);
-        final long time = calendar.getTimeInMillis() + elapsed;
-        return new Date(time);
+        return new Date(elapsed);
     }
 
     @SuppressWarnings("UnusedAssignment")
@@ -181,6 +178,15 @@ public class TeltonikaUDPToMessageService {
     }
 
     private String getHexData(final byte[] bytes) {
-        return new String(bytes).replace("\n", "").replace("\r", "");
+        final String hexString = byteArrayToString(bytes);
+        return hexString.replace("\n", "").replace("\r", "").replace(" ", "");
+    }
+
+    private static String byteArrayToString(byte[] ba) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : ba) {
+            sb.append(String.format("%02X ", b));
+        }
+        return sb.toString();
     }
 }
