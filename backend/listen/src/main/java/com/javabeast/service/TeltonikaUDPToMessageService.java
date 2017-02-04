@@ -4,6 +4,7 @@ import com.javabeast.teltonikia.*;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.DatatypeConverter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -135,6 +136,7 @@ public class TeltonikaUDPToMessageService {
         final long angle = Long.parseLong(gpsHex.substring(position, position += 4), RADIX);
         final int satellites = Integer.parseInt(gpsHex.substring(position, position + 2), RADIX);
         final long speed = Long.parseLong(gpsHex.substring(position, position += 4), RADIX);
+
         final double longitude = getLatLng(longitudeHex);
         final double latitude = getLatLng(latitudeHex);
 
@@ -148,13 +150,15 @@ public class TeltonikaUDPToMessageService {
                 .build();
     }
 
+
     @SuppressWarnings("UnusedAssignment")
-    private double getLatLng(final String latLng) {
-        int latLngPosition = 0;
-        final long degrees = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
-        final long minutes = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
-        final long seconds = Long.parseLong(latLng.substring(latLngPosition, latLngPosition += 2), RADIX);
-        return Math.signum(degrees) * (Math.abs(degrees) + (minutes / 60.0) + (seconds / 3600.0));
+    private double getLatLng(final String value) {
+        final Long parsedValue = Long.parseLong(value, RADIX);
+        final String binaryString = String.format("%32s", Long.toBinaryString(parsedValue)).replace(" ", "0");
+        final boolean isTwosCompliment = binaryString.charAt(0) != '0';
+        final Long calculationValue = isTwosCompliment ? Long.parseLong(Integer.toBinaryString(~parsedValue.intValue()), 2) : parsedValue;
+        final Long position = isTwosCompliment ? ~calculationValue : calculationValue;
+        return (double) (position) / 10000000;
     }
 
     @SuppressWarnings("UnusedAssignment")

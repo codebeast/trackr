@@ -94,8 +94,6 @@ public class TeltonikaUDPToMessageServiceTest {
 
         final GpsElement gpsElement = avlData.getGpsElement();
         assertNotNull(gpsElement);
-
-        System.out.println(avlDataList);
     }
 
 }
