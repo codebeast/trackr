@@ -19,6 +19,7 @@
         <module>rest-listener</module>
         <module>listen</module>
         <module>parser</module>
+        <module>frontend</module>
     </modules>
 
     <properties>
