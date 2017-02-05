@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
  * Message Parser
  */
 
-@Service
+//@Service
 public class UdpMessageParser {
 
 

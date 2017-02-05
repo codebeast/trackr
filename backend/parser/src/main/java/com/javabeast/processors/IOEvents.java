@@ -3,12 +3,14 @@ package com.javabeast.processors;
 import com.javabeast.TrackerMessage;
 import com.javabeast.domain.gecode.VehicleTimeline;
 import com.javabeast.teltonikia.GpsElement;
+import com.javabeast.teltonikia.IOEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -37,7 +39,17 @@ public class IOEvents {
     }
 
 
-    public synchronized void processEvents(final TrackerMessage message) {
+    public void processEvents(final TrackerMessage message) {
+        final List<IOEvent> ioEvents = message.getIoEvents();
+        for (final IOEvent ioEvent : ioEvents) {
+
+            if (ioEvent.getType() == 240) {
+                final boolean moving = ioEvent.getValue() == 1;
+                System.out.println(moving ? "Vehicle moving" : "vehicle stopped");
+            }
+
+        }
+
 
     }
 

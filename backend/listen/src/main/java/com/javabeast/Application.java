@@ -2,7 +2,7 @@ package com.javabeast;
 
 import com.javabeast.ampq.AMPQService;
 import com.javabeast.udp.Listener;
-import com.javabeast.udp.QuoteOfTheMomentServerHandler;
+import com.javabeast.udp.UDPDataParser;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -31,23 +31,23 @@ import java.util.concurrent.CountDownLatch;
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        EventLoopGroup group = new NioEventLoopGroup();
+
+        final ApplicationContext ctx = SpringApplication.run(Application.class);
+        final UDPDataParser bean = ctx.getBean(UDPDataParser.class);
+        final EventLoopGroup group = new NioEventLoopGroup();
         try {
-            Bootstrap b = new Bootstrap();
+            final Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioDatagramChannel.class)
                     .option(ChannelOption.SO_BROADCAST, true)
-                    .handler(new QuoteOfTheMomentServerHandler());
-
+                    .handler(bean);
             b.bind(5000).sync().channel().closeFuture().await();
         } finally {
             group.shutdownGracefully();
         }
-        final ApplicationContext ctx = SpringApplication.run(Application.class);
+
         final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
         latch.await();
-
-
     }
 
     @Bean
