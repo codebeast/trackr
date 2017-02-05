@@ -55,3 +55,7 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+body {
+  background-color: #3f3f3f;
+}
