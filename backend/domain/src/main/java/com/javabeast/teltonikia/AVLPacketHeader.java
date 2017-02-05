@@ -16,6 +16,6 @@ import java.io.Serializable;
 public class AVLPacketHeader implements Serializable {
     private static final long serialVersionUID = -4557304960075040713L;
 
-    private int id;
+    private String id;
     private String imei;
 }

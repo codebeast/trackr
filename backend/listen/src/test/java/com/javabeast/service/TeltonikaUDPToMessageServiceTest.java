@@ -57,7 +57,7 @@ public class TeltonikaUDPToMessageServiceTest {
         assertEquals(expectedLength, length);
 
         final String id = udpChannelHeader.getId();
-        final String expectedId = "CAFE";
+        final String expectedId = "abc";
         assertEquals(expectedId, id);
 
         final int packetType = udpChannelHeader.getPacketType();
@@ -71,8 +71,8 @@ public class TeltonikaUDPToMessageServiceTest {
         final AVLPacketHeader avlPacketHeader = teltonikaMessage.getAvlPacketHeader();
         assertNotNull(avlPacketHeader);
 
-        final int id = avlPacketHeader.getId();
-        final int expectedId = 1536;
+        final String id = avlPacketHeader.getId();
+        final String expectedId = "36";
         assertEquals(expectedId, id);
 
         final String imei = avlPacketHeader.getImei();

@@ -40,7 +40,7 @@ public class UdpMessageParser {
 
         final TeltonikaMessage teltonikaMessage = teltonikaUDPToMessageService.convertUDPToMessage(bytes);
         System.out.println(teltonikaMessage);
-        rabbitTemplate.convertAndSend(unprocessedQueue, teltonikaMessage);
+       // rabbitTemplate.convertAndSend(unprocessedQueue, teltonikaMessage);
     }
 
 

@@ -60,7 +60,7 @@ public class TeltonikaUDPToMessageService {
 
     private AVLPacketHeader parseAVLPacketHeader(final String data) {
         final String hexData = data.substring(AVL_PACKET_HEADER_OFFSET);
-        final int avlPacketHeaderId = getAVLPacketHeaderId(hexData);
+        final String avlPacketHeaderId = getAVLPacketHeaderId(hexData);
         final String imei = getImeiNumber(hexData);
 
         return AVLPacketHeader.builder()
@@ -69,13 +69,12 @@ public class TeltonikaUDPToMessageService {
                 .build();
     }
 
-    private int getAVLPacketHeaderId(final String hexData) {
-        final String idHex = hexData.substring(0, 4);
-        return Integer.parseInt(idHex, RADIX);
+    private String getAVLPacketHeaderId(final String hexData) {
+        return hexData.substring(0, 2);
     }
 
     private String getImeiNumber(final String hexData) {
-        final String imeiHex = hexData.substring(4, 36);
+        final String imeiHex = hexData.substring(2, 36);
         final byte[] bytes = DatatypeConverter.parseHexBinary(imeiHex);
         return new String(bytes).replaceAll("[^A-Za-z0-9 ]", "");
     }
