@@ -1020,7 +1020,7 @@
 }
 
 .teal.lighten-1 {
-  background-color: #26a69a !important;
+  background-color: #e6a342 !important;
 }
 
 .teal-text.text-lighten-1 {
@@ -1732,7 +1732,7 @@
 }
 
 .orange.accent-1 {
-  background-color: #ffd180 !important;
+  background-color: #e6a342 !important;
 }
 
 .orange-text.text-accent-1 {
@@ -1880,7 +1880,7 @@
 }
 
 .brown-text {
-  color: #795548 !important;
+  color: #e6a342 !important;
 }
 
 .brown.lighten-5 {
@@ -2124,7 +2124,7 @@
 }
 
 .white {
-  background-color: #FFFFFF !important;
+  background-color: #29242f; !important;
 }
 
 .white-text {
@@ -3490,6 +3490,14 @@ nav ul a span.badge {
   margin-left: auto;
   left: auto;
   right: auto;
+  margin-top: 0px;
+}
+.row .col.s12.v-offset {
+  width: 100%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+  margin-top:100px;
 }
 
 .row .col.offset-s1 {
@@ -4082,6 +4090,7 @@ nav .brand-logo.center {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
+
   nav .brand-logo.left, nav .brand-logo.right {
     padding: 0;
     -webkit-transform: none;
@@ -4125,7 +4134,7 @@ nav ul li {
 }
 
 nav ul li.active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #e6a342;
 }
 
 nav ul a {
@@ -4149,7 +4158,7 @@ nav ul a.btn > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.b
 }
 
 nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #e6a342;
 }
 
 nav ul.left {
@@ -4257,7 +4266,7 @@ html {
   line-height: 1.5;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
-  color: rgba(0, 0, 0, 0.87);
+  color: #b9b2b2;
 }
 
 @media only screen and (min-width: 0) {

@@ -8,7 +8,7 @@
 
 nav ul a,
 nav .brand-logo {
-  color: #444;
+  color: #b9b2b2;
 }
 
 p {
@@ -23,7 +23,7 @@ p {
   min-height: 380px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  color: #b9b2b2;
 }
   .parallax-container .section {
     width: 100%;
@@ -57,5 +57,5 @@ footer.page-footer {
 }
 
 body {
-  background-color: #3f3f3f;
+  background-color: #29242f;
 }
