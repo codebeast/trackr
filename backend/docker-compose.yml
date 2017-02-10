@@ -1,0 +1,15 @@
+#Dev environment
+version: '2'
+
+services:
+    listener:
+        image: handsoff/listen
+        ports:
+          - "5000:5000"
+          - "5001:5001"
+
+    message_queue:
+        image: trackr:rabbitmq
+        ports:
+          - "15672:15672"
+
