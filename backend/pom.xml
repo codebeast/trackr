@@ -27,6 +27,8 @@
         <lombok.maven.version>1.16.10.0</lombok.maven.version>
         <lombok.version>1.16.10</lombok.version>
         <docker.image.prefix>tracker</docker.image.prefix>
+        <docker.url>src/main/docker</docker.url>
+        <docker.maven.plugin.version>0.4.13</docker.maven.plugin.version>
     </properties>
 
     <dependencies>
