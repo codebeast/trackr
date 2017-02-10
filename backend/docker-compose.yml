@@ -7,9 +7,15 @@ services:
         ports:
           - "5000:5000"
           - "5001:5001"
+        links:
+          - rabbitmq
 
-    message_queue:
+    rabbitmq:
         image: trackr:rabbitmq
         ports:
           - "15672:15672"
 
+    parser:
+        image: handsoff/parser
+        ports:
+          - "7001:7001"
