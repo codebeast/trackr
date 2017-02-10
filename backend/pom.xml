@@ -26,8 +26,7 @@
         <reactor.version>1.1.0.M3</reactor.version>
         <lombok.maven.version>1.16.10.0</lombok.maven.version>
         <lombok.version>1.16.10</lombok.version>
-
-
+        <docker.image.prefix>tracker</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -85,8 +84,21 @@
         </dependency>
 
 
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.2.3</version>
+                <configuration>
+                    <skipDockerBuild>true</skipDockerBuild>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
     <repositories>
         <repository>
