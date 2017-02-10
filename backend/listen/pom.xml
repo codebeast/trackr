@@ -13,9 +13,6 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <docker.image.prefix>tracker</docker.image.prefix>
-    </properties>
 
     <parent>
         <groupId>com.javabeast</groupId>
@@ -38,6 +35,8 @@
                 <version>${docker.maven.plugin.version}</version>
                 <configuration>
                     <skipDockerBuild>false</skipDockerBuild>
+                    <skipDockerPush>false</skipDockerPush>
+                    <useConfigFile>true</useConfigFile>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}/${docker.url}</dockerDirectory>
                     <resources>
