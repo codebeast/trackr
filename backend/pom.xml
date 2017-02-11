@@ -15,6 +15,8 @@
     </parent>
 
     <modules>
+        <module>database</module>
+        <module>message-queue</module>
         <module>domain</module>
         <module>listen</module>
         <module>parser</module>
@@ -29,7 +31,6 @@
         <docker.image.prefix>handsoff</docker.image.prefix>
         <docker.url>src/main/docker</docker.url>
         <docker.maven.plugin.version>0.4.13</docker.maven.plugin.version>
-
     </properties>
 
     <dependencies>

@@ -11,10 +11,12 @@ services:
           - rabbitmq
 
     rabbitmq:
-        image: trackr:rabbitmq
+        image: handsoff:rabbitmq
         ports:
           - "5672:5672"
           - "15672:15672"
+        volumes:
+          - /opt/data:/var/lib/rabbitmq
 
     parser:
         image: handsoff/parser
