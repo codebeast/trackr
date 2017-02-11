@@ -24,3 +24,11 @@ services:
           - "7001:7001"
         links:
           - message_queue
+          - handsoff_database
+ 
+    handsoff_database:
+        image: handsoff/database
+        ports:
+          - "5432:5432"
+
+

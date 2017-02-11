@@ -21,6 +21,7 @@
         <module>listen</module>
         <module>parser</module>
         <module>frontend</module>
+        <module>tracker-liquibase</module>
     </modules>
 
     <properties>
