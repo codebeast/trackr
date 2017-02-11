@@ -23,7 +23,8 @@ public class TestPort {
 
     public static void main(String[] args) throws IOException {
         final DatagramSocket datagramSocket = new DatagramSocket(4999);
-        final DatagramPacket datagramPacket = new DatagramPacket(data, data.length, InetAddress.getByName("localhost"), 5000);
+        final InetAddress address = InetAddress.getByName(args.length == 0 ? "127.0.0.1" : args[0]);
+        final DatagramPacket datagramPacket = new DatagramPacket(data, data.length, address, 5000);
         datagramSocket.send(datagramPacket);
     }
 }

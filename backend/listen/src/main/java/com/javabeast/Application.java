@@ -30,24 +30,31 @@ import java.util.concurrent.CountDownLatch;
 @ComponentScan
 public class Application {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         final ApplicationContext ctx = SpringApplication.run(Application.class);
         final UDPDataParser bean = ctx.getBean(UDPDataParser.class);
         final EventLoopGroup group = new NioEventLoopGroup();
         try {
+            System.out.println("CREATING APPLICATION ON PORT 5000");
             final Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioDatagramChannel.class)
                     .option(ChannelOption.SO_BROADCAST, true)
                     .handler(bean);
-            b.bind(5000).sync().channel().closeFuture().await();
+            try {
+                b.bind(5000).sync().channel().closeFuture().await();
+
+                final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } finally {
             group.shutdownGracefully();
         }
 
-        final CountDownLatch latch = ctx.getBean(CountDownLatch.class);
-        latch.await();
+
     }
 
     @Bean

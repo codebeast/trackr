@@ -5,13 +5,13 @@ services:
     listener:
         image: handsoff/listen
         ports:
-          - "5000:5000"
+          - "5000:5000/udp"
           - "5001:5001"
         links:
-          - rabbitmq
+          - message_queue
 
-    rabbitmq:
-        image: handsoff:rabbitmq
+    message_queue:
+        image: handsoff/message-queue
         ports:
           - "5672:5672"
           - "15672:15672"
