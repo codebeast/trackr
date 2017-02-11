@@ -24,7 +24,11 @@ public class TrackerMessageService {
     }
 
     public void save(final TrackerMessage trackerMessage) {
-        trackerMessageRepo.save(trackerMessage);
+        try {
+            trackerMessageRepo.save(trackerMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -24,6 +24,7 @@ public class TestPort {
     public static void main(String[] args) throws IOException {
         final DatagramSocket datagramSocket = new DatagramSocket(4999);
         final InetAddress address = InetAddress.getByName(args.length == 0 ? "127.0.0.1" : args[0]);
+        System.out.println("Sending packet to: " + address);
         final DatagramPacket datagramPacket = new DatagramPacket(data, data.length, address, 5000);
         datagramSocket.send(datagramPacket);
     }

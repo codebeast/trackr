@@ -22,3 +22,5 @@ services:
         image: handsoff/parser
         ports:
           - "7001:7001"
+        links:
+          - message_queue
