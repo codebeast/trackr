@@ -4,8 +4,6 @@ import com.javabeast.domain.gecode.Location;
 import com.javabeast.domain.gecode.MapQuestGeocodeResult;
 import com.javabeast.geocode.GeocodedLocation;
 import com.javabeast.repo.GeocodedLocationRepo;
-import com.javabeast.teltonikia.GpsElement;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,8 +14,8 @@ import java.io.IOException;
 public class GeocodeService {
 
     private final RestTemplate restTemplate;
-
     private final GeocodedLocationRepo geocodedLocationRepo;
+
 
     public GeocodeService(final RestTemplate restTemplate, final GeocodedLocationRepo geocodedLocationRepo) {
         this.restTemplate = restTemplate;
@@ -33,8 +31,9 @@ public class GeocodeService {
 
         final MapQuestGeocodeResult mapQuestGeocodeResult = restTemplate.getForObject("https://www.mapquestapi.com/geocoding/v1/reverse?key=aGuTKpOScwKlumRI93qMRheuNqdyuIEl&location=" + latitude + "," + longitude + "&outFormat=json&thumbMaps=false", MapQuestGeocodeResult.class);
         final GeocodedLocation geocodedLocation = convertFromMapQuest(mapQuestGeocodeResult);
-        geocodedLocationRepo.save(geocodedLocation);
-        return geocodedLocation;
+        final GeocodedLocation savedLocation = geocodedLocationRepo.save(geocodedLocation);
+
+        return savedLocation;
     }
 
     private GeocodedLocation convertFromMapQuest(final MapQuestGeocodeResult mapQuestGeocodeResult) {

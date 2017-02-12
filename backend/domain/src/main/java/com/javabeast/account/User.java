@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Id;
 
-@Document
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,13 +17,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private ObjectId id;
+    private Long id;
 
 
     private String email;
     private String passwordHash;
 
-    @DBRef
+    //@DBRef
+    @Transient
     private Account account;
 
 }

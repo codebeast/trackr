@@ -57,10 +57,11 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void trackerMessageQueue(TrackerMessage trackerMessage, Channel channel,
                                     @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-       // System.out.println("MessageRoutes.trackerMessageQueue");
-        trackerMessageService.save(trackerMessage);
-        pushToRoutes(trackerMessage);
-        channel.basicAck(tag, true);
+        final boolean save = trackerMessageService.save(trackerMessage);
+        if (save) {
+            pushToRoutes(trackerMessage);
+        }
+        channel.basicAck(tag, save);
     }
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "reversegeocode", durable = "true"),
@@ -68,7 +69,7 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void reverseGeocode(TrackerMessage message, Channel channel,
                                @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-     //   System.out.println("MessageRoutes.reverseGeocode");
+        //   System.out.println("MessageRoutes.reverseGeocode");
         final boolean shouldAck = geocoder.reverseGeocode(message);
         channel.basicAck(tag, shouldAck);
         if (shouldAck) {
@@ -84,7 +85,7 @@ public class MessageRoutes {
             key = "orderRoutingKey"))
     public void ioevents(TrackerMessage message, Channel channel,
                          @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
-       // System.out.println("MessageRoutes.ioevents");
+        // System.out.println("MessageRoutes.ioevents");
 
         ioEvents.processEvents(message);
 
@@ -106,7 +107,7 @@ public class MessageRoutes {
 
 
     private void pushToRoutes(final TrackerMessage message) {
-      //  System.out.println("MessageRoutes.pushToRoutes");
+        //  System.out.println("MessageRoutes.pushToRoutes");
         geocoder.addToQueue(message);
         ioEvents.addToQueue(message);
     }

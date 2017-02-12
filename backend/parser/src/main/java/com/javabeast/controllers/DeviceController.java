@@ -24,30 +24,30 @@ public class DeviceController {
         this.deviceService = deviceService;
     }
 
-    @PostMapping
-    public Device addDevice(@RequestBody final CreateDevice createDevice) {
-        return deviceService.saveDevice(createDevice);
-    }
-
-    @GetMapping("{imei}")
-    public List<JourneyDTO> getDeviceJourneys(@PathVariable("imei") final String imei) {
-        return getDeviceJourneyDTOStartEndOnly(imei);
-    }
-
-    private List<JourneyDTO> getDeviceJourneyDTOStartEndOnly(final String imei) {
-        final List<Journey> deviceJourneyStartEndOnly = deviceService.getDeviceJourneys(imei);
-        final List<JourneyDTO> journeyDTOList = new ArrayList<>();
-        for (final Journey journey : deviceJourneyStartEndOnly) {
-            final List<TrackerMessage> trackerMessageList = journey.getTrackerMessageList();
-            final TrackerMessage start = trackerMessageList.get(0);
-            final TrackerMessage end = trackerMessageList.get(trackerMessageList.size() - 1);
-
-            final JourneyDTO journeyDTO = JourneyDTO.builder().startMessage(start).endMessage(end).build();
-            journeyDTOList.add(journeyDTO);
-
-        }
-        return journeyDTOList;
-    }
+//    @PostMapping
+//    public Device addDevice(@RequestBody final CreateDevice createDevice) {
+//        return deviceService.saveDevice(createDevice);
+//    }
+//
+//    @GetMapping("{imei}")
+//    public List<JourneyDTO> getDeviceJourneys(@PathVariable("imei") final String imei) {
+//        return getDeviceJourneyDTOStartEndOnly(imei);
+//    }
+//
+//    private List<JourneyDTO> getDeviceJourneyDTOStartEndOnly(final String imei) {
+//        final List<Journey> deviceJourneyStartEndOnly = deviceService.getDeviceJourneys(imei);
+//        final List<JourneyDTO> journeyDTOList = new ArrayList<>();
+//        for (final Journey journey : deviceJourneyStartEndOnly) {
+//            final List<TrackerMessage> trackerMessageList = journey.getTrackerMessageList();
+//            final TrackerMessage start = trackerMessageList.get(0);
+//            final TrackerMessage end = trackerMessageList.get(trackerMessageList.size() - 1);
+//
+//            final JourneyDTO journeyDTO = JourneyDTO.builder().startMessage(start).endMessage(end).build();
+//            journeyDTOList.add(journeyDTO);
+//
+//        }
+//        return journeyDTOList;
+//    }
 
 
 }

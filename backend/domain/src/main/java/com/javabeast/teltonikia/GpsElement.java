@@ -1,22 +1,26 @@
 package com.javabeast.teltonikia;
 
+import com.javabeast.TrackerMessage;
 import com.javabeast.geocode.GeocodedLocation;
 import lombok.*;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Builder
-@Document
+@Entity
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class GpsElement implements Serializable {
     private static final long serialVersionUID = -4557304960075040713L;
     private static final double EPSILON = 0.0001;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long gpsElementId;
 
     private double latitude;
     private double longitude;
@@ -25,12 +29,15 @@ public class GpsElement implements Serializable {
     private int satellites;
     private long speed;
 
+    @OneToOne
+    private TrackerMessage trackerMessage;
+
     @Transient
     public String getLatLngString() {
         return latitude + "," + longitude;
     }
 
-    @DBRef
+    @ManyToOne(fetch = FetchType.EAGER)
     private GeocodedLocation geocodedLocation;
 
     @Override

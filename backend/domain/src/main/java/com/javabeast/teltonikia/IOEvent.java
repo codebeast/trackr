@@ -1,21 +1,28 @@
 package com.javabeast.teltonikia;
 
+import com.javabeast.TrackerMessage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Builder
-@Document
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class IOEvent implements Serializable {
     private static final long serialVersionUID = -4557304960075040713L;
 
-        private int type;
-        private int value;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ioEventId;
+    private int type;
+    private int value;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TrackerMessage trackerMessage;
 }

@@ -11,6 +11,9 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +29,11 @@ import java.util.concurrent.CountDownLatch;
 @SpringBootApplication
 @EnableReactor
 @Import({Listener.class, AMPQService.class})
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {
+        DataSourceAutoConfiguration.class,
+        DataSourceTransactionManagerAutoConfiguration.class,
+        HibernateJpaAutoConfiguration.class
+})
 @ComponentScan
 public class Application {
 
@@ -36,7 +43,6 @@ public class Application {
         final UDPDataParser bean = ctx.getBean(UDPDataParser.class);
         final EventLoopGroup group = new NioEventLoopGroup();
         try {
-            System.out.println("CREATING APPLICATION ON PORT 5000");
             final Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioDatagramChannel.class)

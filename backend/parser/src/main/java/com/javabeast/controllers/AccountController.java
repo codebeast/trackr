@@ -21,16 +21,16 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping
-    public @ResponseBody Account createAccount(@RequestBody final CreateAccount createAccount) {
-        return accountService.createAccount(createAccount);
-    }
-
-
-    @RequestMapping(value = "/{accountName}/devices", method = RequestMethod.GET)
-    public @ResponseBody List<TrackerMessage> getDevices(@PathVariable(value = "accountName") final String accountName) {
-        return accountService.getDevices(accountName);
-    }
+//    @PostMapping
+//    public @ResponseBody Account createAccount(@RequestBody final CreateAccount createAccount) {
+//        return accountService.createAccount(createAccount);
+//    }
+//
+//
+//    @RequestMapping(value = "/{accountName}/devices", method = RequestMethod.GET)
+//    public @ResponseBody List<TrackerMessage> getDevices(@PathVariable(value = "accountName") final String accountName) {
+//        return accountService.getDevices(accountName);
+//    }
 
 
 }

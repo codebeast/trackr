@@ -6,32 +6,34 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
-@Document
+@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackerMessage implements Serializable{
+public class TrackerMessage implements Serializable {
 
     private static final long serialVersionUID = -4557304960075040713L;
 
     @Id
-    private ObjectId id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long trackerMessageId;
 
     private String imei;
     private Date timestamp;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private GpsElement gpsElement;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trackerMessage", cascade = CascadeType.ALL)
     private List<IOEvent> ioEvents;
-
-
 
 }

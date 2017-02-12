@@ -19,10 +19,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public User login(@RequestBody final User user) {
-        return userService.login(user);
-    }
+//    @PostMapping
+//    public User login(@RequestBody final User user) {
+//        return userService.login(user);
+//    }
 
 
 }

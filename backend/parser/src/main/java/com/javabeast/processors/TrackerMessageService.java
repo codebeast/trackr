@@ -3,10 +3,11 @@ package com.javabeast.processors;
 
 import com.javabeast.TrackerMessage;
 import com.javabeast.repo.TrackerMessageRepo;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.javabeast.teltonikia.IOEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -16,18 +17,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class TrackerMessageService {
 
-    private final TrackerMessageRepo trackerMessageRepo;
+     private final TrackerMessageRepo trackerMessageRepo;
 
     @Autowired
     public TrackerMessageService(final TrackerMessageRepo trackerMessageRepo) {
         this.trackerMessageRepo = trackerMessageRepo;
     }
 
-    public void save(final TrackerMessage trackerMessage) {
+    public boolean save(final TrackerMessage trackerMessage) {
         try {
+
+            //set the parent id
+            final List<IOEvent> ioEvents = trackerMessage.getIoEvents();
+            for (final IOEvent ioEvent : ioEvents) {
+                ioEvent.setTrackerMessage(trackerMessage);
+            }
+            trackerMessage.getGpsElement().setTrackerMessage(trackerMessage);
             trackerMessageRepo.save(trackerMessage);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 

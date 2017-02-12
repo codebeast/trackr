@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
 import reactor.spring.context.config.EnableReactor;
 
@@ -22,6 +23,7 @@ import reactor.spring.context.config.EnableReactor;
 @EnableAutoConfiguration
 @ComponentScan
 @EnableCaching
+@EnableJpaRepositories
 @Import({AMPQConnection.class, Cache.class})
 public class Application {
 

@@ -2,6 +2,8 @@ package com.javabeast.processors;
 
 import com.javabeast.TrackerMessage;
 import com.javabeast.geocode.GeocodedLocation;
+import com.javabeast.repo.GeocodedLocationRepo;
+import com.javabeast.repo.GpsElementRepo;
 import com.javabeast.repo.TrackerMessageRepo;
 import com.javabeast.services.GeocodeService;
 import com.javabeast.teltonikia.GpsElement;
@@ -26,13 +28,18 @@ public class Geocoder {
 
     private final TrackerMessageRepo trackerMessageRepo;
 
+    private final GpsElementRepo gpsElementRepo;
+
     private final GeocodeService geocodeService;
 
     @Autowired
-    public Geocoder(final RabbitTemplate rabbitTemplate, final TrackerMessageRepo trackerMessageRepo, final GeocodeService geocodeService) {
+    public Geocoder(final RabbitTemplate rabbitTemplate, final TrackerMessageRepo trackerMessageRepo,
+                    final GeocodeService geocodeService,
+                    final GpsElementRepo gpsElementRepo) {
         this.rabbitTemplate = rabbitTemplate;
         this.trackerMessageRepo = trackerMessageRepo;
         this.geocodeService = geocodeService;
+        this.gpsElementRepo = gpsElementRepo;
     }
 
     public void addToQueue(final TrackerMessage message) {
@@ -46,7 +53,8 @@ public class Geocoder {
             final String position = getPositionString(gpsElement);
             final GeocodedLocation geocodedLocation = geocodeService.getGeocodedLocation(position);
             gpsElement.setGeocodedLocation(geocodedLocation);
-            trackerMessageRepo.save(trackerMessage);
+            gpsElementRepo.save(gpsElement);
+          //  trackerMessageRepo.save(trackerMessage);
         } catch (IOException e) {
             e.printStackTrace();
             return false;
