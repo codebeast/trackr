@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Spring Security Example </title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
 </head>
-<body>
-<div th:if="${param.error}">
-    Invalid username and password.
+
+<body class="main-background-image">
+<div class="container" style="min-height:800px">
+
+    <div class="row">
+        <form class="col s12 m6 l5 offset-m6 offset-l7">
+            <div class="row">
+                <form th:action="@{/login}" method="post">
+                    <div class="input-field col s12 center">
+                        <h4 class="white-text">Bike Tracking</h4>
+                    </div>
+                    <div class="input-field col s12 center">
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <i class="large material-icons prefix white-text">perm_identity</i>
+                        <input id="icon_prefix" type="text" class="validate white-text" autocomplete='off'/>
+                        <label for="icon_prefix">Email Address</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="large material-icons prefix white-text">vpn_key</i>
+                        <input id="password" type="password" class="validate white-text" autocomplete='off'/>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col s4 offset-s8">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/javascripts/materialize.js"></script>
+<script src="/javascripts/init.js"></script>
+<div class="hiddendiv common"></div>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 var entrypoint = function () {
     console.log("starting application");
     var main = angular.module("main", ["controllers", "services", "directives", "leaflet-directive"]);
+
     var controllers = angular.module("controllers", []);
     var services = angular.module("services", []);
     var directives = angular.module("directives", []);
@@ -20,9 +21,12 @@ var entrypoint = function () {
         console.log("create directive");
         return {
             controller: "MapController",
-            templateUrl: 'templates/map.html'
+            template: "<style>html {height: 100%;} .mapContainer { position: absolute; height: 100%; width: 100%;}</style> <div class='mapContainer' style='z-index: 1'><leaflet width='100%' height='100%' markers='markers' center='ukCenter'></leaflet></div>"
         };
     });
+
+
+
     mapDirective.$inject = [];
 
 
@@ -48,7 +52,7 @@ var entrypoint = function () {
 
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/device/all'
+            url: '/whereisfogie/location'
         }).then(function successCallback(response) {
             var cars = response.data;
             updateMarkers(cars);
@@ -56,19 +60,20 @@ var entrypoint = function () {
             console.log(response);
         });
 
-        function updateMarkers(cars) {
+        function updateMarkers(car) {
             $scope.markers = {};
-            for (var index in cars) {
-                var car = cars[index];
-                console.log(car);
+            console.log(car)
                 $scope.markers[car.imei] = {
                     lat: car.gpsElement.latitude,
                     lng: car.gpsElement.longitude,
-                    message: car.imei,
+                    message: "Fogie",
                     draggable: false,
-                    icon: local_icons.active_icon
-                }
+                    icon: local_icons.inactive_icon
+
             }
+             $scope.ukCenter.lat = car.gpsElement.latitude;
+             $scope.ukCenter.lng = car.gpsElement.longitude;
+             $scope.ukCenter.zoom = 16;
         }
         angular.extend($scope, {
             ukCenter: {
@@ -79,25 +84,6 @@ var entrypoint = function () {
         });
     });
     mapController.$inject = ["$scope", "$http"];
-
-    //VEHICLES
-    var vehicleDirective = directives.directive("vehicleDirective", function () {
-        console.log("create directive");
-        return {
-            templateUrl: 'templates/vehicles.html'
-        };
-    });
-    vehicleDirective.$inject = [];
-
-
-    //LOGIN
-    var loginDirective = directives.directive("loginDirective", function () {
-        console.log("create login directive");
-        return {
-            templateUrl: 'templates/login_form.html'
-        };
-    });
-    loginDirective.$inject = [];
 
 
 }();

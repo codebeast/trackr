@@ -1,5 +1,6 @@
 package com.javabeast.teltonikia;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.javabeast.TrackerMessage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,7 @@ public class IOEvent implements Serializable {
     private int type;
     private int value;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private TrackerMessage trackerMessage;
 }

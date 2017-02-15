@@ -1,5 +1,6 @@
 package com.javabeast.teltonikia;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.javabeast.TrackerMessage;
 import com.javabeast.geocode.GeocodedLocation;
 import lombok.*;
@@ -29,6 +30,7 @@ public class GpsElement implements Serializable {
     private int satellites;
     private long speed;
 
+    @JsonBackReference
     @OneToOne
     private TrackerMessage trackerMessage;
 
@@ -36,6 +38,7 @@ public class GpsElement implements Serializable {
     public String getLatLngString() {
         return latitude + "," + longitude;
     }
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private GeocodedLocation geocodedLocation;

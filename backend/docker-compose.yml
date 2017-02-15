@@ -28,9 +28,15 @@ services:
         env_file:
           - parser-variables.env
 
-    #handsoff_database:
-        #image: handsoff/database
-       # ports:
-       #   - "5432:5432"
+    frontend:
+        image: handsoff/frontend
+        ports:
+          - "8080:8080"
+        links:
+          - parser
+#    handsoff_database:
+#        image: handsoff/database
+#        ports:
+#          - "5432:5432"
 
 

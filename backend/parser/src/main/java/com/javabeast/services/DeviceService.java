@@ -5,6 +5,7 @@ import com.javabeast.account.Account;
 import com.javabeast.account.Device;
 import com.javabeast.account.dto.CreateDevice;
 import com.javabeast.domain.gecode.DeviceState;
+import com.javabeast.repo.TrackerMessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,22 @@ import java.util.List;
 @Service
 public class DeviceService {
 
+    private final TrackerMessageRepo trackerMessageRepo;
+
+    @Autowired
+    public DeviceService(final TrackerMessageRepo trackerMessageRepo) {
+        this.trackerMessageRepo = trackerMessageRepo;
+    }
+
+    public TrackerMessage getLatestMessage(final String imei) {
+        return trackerMessageRepo.findTop1ByImeiOrderByTimestampDesc(imei);
+    }
+
 //    private final DeviceRepo deviceRepo;
 //
 //    private final AccountRepo accountRepo;
 //
-//    private final TrackerMessageRepo trackerMessageRepo;
+//
 //
 //    @Autowired
 //    public DeviceService(final DeviceRepo deviceRepo, final AccountRepo accountRepo, final TrackerMessageRepo trackerMessageRepo) {

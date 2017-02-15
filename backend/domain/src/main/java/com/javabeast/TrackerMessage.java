@@ -1,5 +1,6 @@
 package com.javabeast;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.javabeast.teltonikia.GpsElement;
 import com.javabeast.teltonikia.IOEvent;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,11 @@ public class TrackerMessage implements Serializable {
     private String imei;
     private Date timestamp;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     private GpsElement gpsElement;
 
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "trackerMessage", cascade = CascadeType.ALL)
     private List<IOEvent> ioEvents;
 

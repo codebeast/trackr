@@ -55,3 +55,29 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+.main-background-image {
+  background-image: url('/images/background.jpg');
+  background-repeat: no-repeat;
+  min-width: 100%;
+  min-height: 100%;
+  background-position: 50% 0%;
+  transform: translate3d(0, 0, 0);
+  padding: 15px;
+}
+.main-background-image:before {
+  transform: translate3d(0, 0, 0);
+  content: '';
+  position: fixed;
+  width: 150%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  opacity: 0.6;
+  overflow-x: hidden;
+}
+
+.white-text {
+color:white
+}
+
