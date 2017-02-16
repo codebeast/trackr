@@ -1,17 +1,15 @@
 package com.javabeast.controllers;
 
-import com.javabeast.TrackerMessage;
+import com.javabeast.account.NewAccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
 
-@RestController
+@Controller
 @RequestMapping("createaccount")
 public class CreateAccountController {
 
@@ -26,12 +24,14 @@ public class CreateAccountController {
     }
 
     @GetMapping
-    public ModelAndView getMap() {
-        return new ModelAndView("create_account", new HashMap<>());
+    public String showCreateAccount(Model model) {
+        model.addAttribute("newAccountDTO", new NewAccountDTO());
+        return "create_account";
     }
 
-    @GetMapping("location")
-    public TrackerMessage getLocation() {
-        return restTemplate.getForObject(backendUrl + "/device/357454071854283", TrackerMessage.class);
+    @PostMapping
+    public String tryCreateAccount(@ModelAttribute final NewAccountDTO newAccountDTO) {
+        return "create_account";
     }
+
 }

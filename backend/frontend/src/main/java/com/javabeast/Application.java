@@ -2,6 +2,7 @@ package com.javabeast;
 
 
 import com.javabeast.config.MvcConfig;
+import com.javabeast.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.Import;
         DataSourceTransactionManagerAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class
 })
-@Import({MvcConfig.class})
+@Import({MvcConfig.class, WebSecurityConfig.class})
 public class Application {
 
     public static void main(String[] args) throws Throwable {
