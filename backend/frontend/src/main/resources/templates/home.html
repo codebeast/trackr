@@ -39,12 +39,23 @@
 
 </head>
 <body>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+
+    <li th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}">
+        <a th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}" th:text="${state.displayName}">Placeholder</a>
+    </li>
+
+</ul>
+
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Bike Tracking <span class="red-text lighten-2"
+        <a id="logo-container" href="/" class="brand-logo">Bike Tracking <span class="red-text lighten-2"
                                                                                style="font-size:x-small;">powered by hands off</span></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Navbar Link</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+            </li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
@@ -86,7 +97,6 @@
     </div>
     <div class="parallax"><img src="/images/white-desktop.jpg" alt="A cool motorbike"/></div>
 </div>
-
 
 <div class="container">
     <div class="section">

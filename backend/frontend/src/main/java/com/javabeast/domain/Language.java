@@ -3,7 +3,16 @@ package com.javabeast.domain;
 public enum Language {
     EN("en"),
     ES("es"),
-    DE("de");
+    DE("de"),
+    IT("it"),
+    NL("nl"),
+    PL("pl"),
+    PT("pt"),
+    DA("da"),
+    UK("uk"),
+    RU("ru"),
+    NO("no"),
+    SV("sv");
 
     private final String displayName;
 
