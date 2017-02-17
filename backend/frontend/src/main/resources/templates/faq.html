@@ -45,7 +45,7 @@
 
     <li th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}">
         <a th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}"
-           th:text="${state.displayName}">Placeholder</a>
+           th:text="${state.languageName}">Placeholder</a>
     </li>
 
 </ul>
@@ -55,7 +55,10 @@
                                                                                style="font-size:x-small;">powered by hands off</span></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="#">Navbar Link</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+            <li th:with="lang=${#locale}">
+                <a class="dropdown-button" href="#!" data-activates="dropdown1"
+                   th:text=" ${T(com.javabeast.domain.Language).getNameFromCode(lang)}">Dropdown
+                    <i class="material-icons right">arrow_drop_down</i></a>
             </li>
         </ul>
 
