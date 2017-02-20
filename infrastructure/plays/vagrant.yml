@@ -1,7 +1,0 @@
-- name: Provision Vagrant box for running deployment script
-  hosts: all
-  become: True
-  gather_facts: True
-  roles:
-     - vagrant_provision
-

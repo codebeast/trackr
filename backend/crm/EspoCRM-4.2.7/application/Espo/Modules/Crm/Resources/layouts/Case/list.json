@@ -1,8 +1,0 @@
-[
-    {"name":"name","width":30,"link":true},
-    {"name":"number","width":12},
-    {"name":"status", "width":11},
-    {"name":"priority", "width":11},
-    {"name":"account"},
-    {"name":"assignedUser"}
-]

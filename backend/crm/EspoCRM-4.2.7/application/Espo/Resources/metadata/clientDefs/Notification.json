@@ -1,7 +1,0 @@
-{
-    "controller": "controllers/notification",
-    "collection": "collections/note",
-    "itemViews": {
-        "System": "views/notification/items/system"
-    }
-}

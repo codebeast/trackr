@@ -1,6 +1,0 @@
-examples/
-vendor/
-composer.lock
-composer.phar
-phpunit.xml
-php-cs-fixer.phar
